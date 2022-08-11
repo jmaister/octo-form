@@ -1,4 +1,4 @@
-import { Input, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Input, MenuItem, Select, TextField } from "@mui/material";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { DateTimePicker, DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { FormInputText } from "./components/FormInputText";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -103,6 +104,8 @@ function FutureForm() {
       <p>{errors.age?.message}</p>
       <br />
 
+    <FormInputText control={control} name="age" label="Age" />
+
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Controller
             name="todaysDate"
@@ -131,6 +134,7 @@ function FutureForm() {
     </LocalizationProvider>
 
     <input type="submit" />
+    <Button onClick={handleSubmit(onSubmit)}>Submit</Button>
   </form>;
 }
 

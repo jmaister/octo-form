@@ -11,6 +11,7 @@ import { FormInputText } from "./components/FormInputText";
 import { FormInputDropdown } from "./components/FormInputDropdown";
 import { FormInputDate } from "./components/FormInputDate";
 import { FormInputDateTime } from "./components/FormInputDateTime";
+import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -19,7 +20,7 @@ import { FormInputDateTime } from "./components/FormInputDateTime";
 
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
-type iceCreamType = {
+type OptionLabel = {
     label: string
     value: string
 }
@@ -31,22 +32,36 @@ type InputType = {
   age: number;
   todaysDate: Date;
   todaysDateAndTime: Date;
+  days: string[]
 };
 
-const options : iceCreamType[] = [
+const iceCreamOptions : OptionLabel[] = [
     { value: "", label: "-- no flavor --" },
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
     { value: "vanilla", label: "Vanilla" },
   ];
 
+const dayOptions : OptionLabel[] = [
+    {value:"", label:"-- no day --"},
+    {value:"Monday", label:"Monday"},
+    {value:"Tuesday", label:"Tuesday"},
+    {value:"Wednesday", label:"Wednesday"},
+    {value:"Thursday", label:"Thursday"},
+    {value:"Friday", label:"Friday"},
+    {value:"Saturday", label:"Saturday"},
+    {value:"Sunday", label:"Sunday"},
+];
+
+
 const schema = yup.object({
     example: yup.string(),
     exampleRequired: yup.string().required(),
-    iceCreamType: yup.string().oneOf(options.filter(o => o.value != "").map(option => option.value)),
+    iceCreamType: yup.string().oneOf(iceCreamOptions.filter(o => o.value != "").map(option => option.value)),
     age: yup.number().positive().integer().moreThan(0).required(),
     todaysDate: yup.date().required(),
     todaysDateAndTime: yup.date().required(),
+    days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.value != "").map(option => option.value))).required(),
   }).required();
 
 function FutureForm() {
@@ -94,7 +109,7 @@ function FutureForm() {
             required={false}
             {...field}
             >
-            {options.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem >)}
+            {iceCreamOptions.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem >)}
         </Select>}
       />
       <p>{errors.iceCreamType?.message}</p>
@@ -104,7 +119,7 @@ function FutureForm() {
         name="iceCreamType"
         control={control}
         label="Ice Cream Type"
-        options={options}
+        options={iceCreamOptions}
       />
       <br/>
 
@@ -128,6 +143,13 @@ function FutureForm() {
         name="todaysDateAndTime"
         control={control}
         label="Today's date and time"
+      />
+
+    <FormInputMultiCheckbox
+        name="days"
+        control={control}
+        label="Days"
+        options={dayOptions}
       />
 
     <Button

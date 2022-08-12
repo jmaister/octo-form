@@ -1,5 +1,5 @@
 
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 
@@ -23,7 +23,10 @@ export const FormInputDropdown= ({name, control, label, options}: FormInputProps
   return <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value } }) => (
+      render={({ 
+        field: { onChange, value },
+        fieldState: { error },
+     }) => (
         <FormControl fullWidth>
             <InputLabel id={labelId}>{label}</InputLabel>
             <Select
@@ -34,6 +37,7 @@ export const FormInputDropdown= ({name, control, label, options}: FormInputProps
                 >
             {generateSelectOptions()}
             </Select>
+            <FormHelperText hidden={!error}>{error?.message}</FormHelperText>
         </FormControl>
       )}
     />

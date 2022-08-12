@@ -1,14 +1,13 @@
 
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { FormInputProps } from "./FormInputProps";
+import {  FormInputPropsWithOptions } from "./FormInputProps";
 
 
-export const FormInputDropdown= ({name, control, label, options}: FormInputProps) => {
+export const FormInputDropdown= ({name, control, label, options}: FormInputPropsWithOptions) => {
     
 
   const generateSelectOptions = () => {
-    options = options || [];
     return options.map((option) => {
       return (
         <MenuItem key={option.value} value={option.value}>

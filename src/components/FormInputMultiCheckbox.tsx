@@ -1,7 +1,7 @@
 
 import { Checkbox, FormControl, FormHelperText, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { FormInputProps } from "./FormInputProps";
+import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 const ITEM_HEIGHT = 54;
@@ -15,11 +15,10 @@ const MenuProps = {
   },
 };
 
-export const FormInputMultiCheckbox = ({name, control, label, options}: FormInputProps) => {
+export const FormInputMultiCheckbox = ({name, control, label, options}: FormInputPropsWithOptions) => {
     
 
   const generateSelectOptions = (value:any) => {
-    options = options || [];
     return options.map((option) => {
       return (
         <MenuItem key={option.value} value={option.value}>

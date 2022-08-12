@@ -12,6 +12,7 @@ import { FormInputDropdown } from "./components/FormInputDropdown";
 import { FormInputDate } from "./components/FormInputDate";
 import { FormInputDateTime } from "./components/FormInputDateTime";
 import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
+import { FormInputSlider } from "./components/FormInputSlider";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -32,7 +33,8 @@ type InputType = {
   age: number;
   todaysDate: Date;
   todaysDateAndTime: Date;
-  days: string[]
+  days: string[];
+  volume: number;
 };
 
 const iceCreamOptions : OptionLabel[] = [
@@ -62,6 +64,7 @@ const schema = yup.object({
     todaysDate: yup.date().required(),
     todaysDateAndTime: yup.date().required(),
     days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.value != "").map(option => option.value))).required(),
+    volume: yup.number().positive().integer().min(0).max(10).required(),
   }).required();
 
 function FutureForm() {
@@ -77,6 +80,7 @@ function FutureForm() {
         age: 1,
         iceCreamType: "",
         todaysDate: new Date(),
+        volume: 3,
     }
   });
 
@@ -150,6 +154,15 @@ function FutureForm() {
         control={control}
         label="Days"
         options={dayOptions}
+      />
+
+    <FormInputSlider
+        name="volume"
+        control={control}
+        label="Volume"
+        min={0}
+        max={10}
+        step={1}
       />
 
     <Button

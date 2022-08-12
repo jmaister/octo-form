@@ -19,6 +19,7 @@ function App() {
     exampleRequired: "",
 }
 
+// https://github.com/jquense/yup#typescript-integration
 const schema : yup.SchemaOf<InputType> = yup.object({
   example: yup.string(),
   exampleRequired: yup.string().required(),

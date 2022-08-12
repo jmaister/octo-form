@@ -4,15 +4,14 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { DateTimePicker, DesktopDatePicker } from "@mui/x-date-pickers";
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { FormInputText } from "./components/FormInputText";
 import { FormInputDropdown } from "./components/FormInputDropdown";
 import { FormInputDate } from "./components/FormInputDate";
 import { FormInputDateTime } from "./components/FormInputDateTime";
 import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
 import { FormInputSlider } from "./components/FormInputSlider";
+import { OptionLabel } from "./components/FormInputProps";
+import { InputType } from "./Types";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -21,21 +20,9 @@ import { FormInputSlider } from "./components/FormInputSlider";
 
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
-type OptionLabel = {
-    label: string
-    value: string
-}
 
-type InputType = {
-  example: string;
-  exampleRequired: string;
-  iceCreamType: string;
-  age: number;
-  todaysDate: Date;
-  todaysDateAndTime: Date;
-  days: string[];
-  volume: number;
-};
+
+
 
 const iceCreamOptions : OptionLabel[] = [
     { value: "", label: "-- no flavor --" },
@@ -56,18 +43,14 @@ const dayOptions : OptionLabel[] = [
 ];
 
 
-const schema = yup.object({
-    example: yup.string(),
-    exampleRequired: yup.string().required(),
-    iceCreamType: yup.string().oneOf(iceCreamOptions.filter(o => o.value != "").map(option => option.value)),
-    age: yup.number().positive().integer().moreThan(0).required(),
-    todaysDate: yup.date().required(),
-    todaysDateAndTime: yup.date().required(),
-    days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.value != "").map(option => option.value))).required(),
-    volume: yup.number().positive().integer().min(0).max(10).required(),
-  }).required();
 
-function FutureForm() {
+export interface FutureFormProps {
+  defaultValues: InputType;
+  schema: yup.SchemaOf<InputType>;
+}
+
+
+export default function FutureForm({ defaultValues, schema }: FutureFormProps) {
   const {
     control,
     register,
@@ -76,12 +59,7 @@ function FutureForm() {
     watch,
   } = useForm<InputType>({
     resolver: yupResolver(schema),
-    defaultValues: {
-        age: 1,
-        iceCreamType: "",
-        todaysDate: new Date(),
-        volume: 3,
-    }
+    defaultValues: defaultValues
   });
 
   const onSubmit: SubmitHandler<InputType> = (data) => {
@@ -172,6 +150,5 @@ function FutureForm() {
 
       <div>{JSON.stringify(watch(), null, 2)}</div>
   </form>;
-}
+};
 
-export default FutureForm;

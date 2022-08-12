@@ -5,13 +5,13 @@ export interface FormInputProps {
 }
 
 
-export interface Option {
+export interface OptionLabel {
   value: string | number;
   label: string;
 }
 
 export interface FormInputPropsWithOptions extends FormInputProps {
-  options: Option[];
+  options: OptionLabel[];
 }
 
 export interface FormInputSliderProps extends FormInputProps {

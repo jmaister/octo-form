@@ -9,6 +9,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { FormInputText } from "./components/FormInputText";
 import { FormInputDropdown } from "./components/FormInputDropdown";
+import { FormInputDate } from "./components/FormInputDate";
+import { FormInputDateTime } from "./components/FormInputDateTime";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -53,6 +55,7 @@ function FutureForm() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<InputType>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -115,35 +118,24 @@ function FutureForm() {
 
     <FormInputText control={control} name="age" label="Age" />
 
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name="todaysDate"
-            control={control}
-            render={({ field }) =>         <DesktopDatePicker
-                label="Date desktop"
-                inputFormat="MM/dd/yyyy"
-                renderInput={(params) => <TextField {...params} />}
-                {...field}
-                />}
-            />
-            <p>{errors.todaysDate?.message}</p>
-    </LocalizationProvider>
+    <FormInputDate
+        name="todaysDate"
+        control={control}
+        label="Today's date"
+      />
 
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name="todaysDateAndTime"
-            control={control}
-            render={({ field }) =>         <DateTimePicker
-                label="Date and time desktop"
-                renderInput={(params) => <TextField {...params} />}
-                {...field}
-                />}
-            />
-            <p>{errors.todaysDateAndTime?.message}</p>
-    </LocalizationProvider>
+    <FormInputDateTime
+        name="todaysDateAndTime"
+        control={control}
+        label="Today's date and time"
+      />
 
-    <input type="submit" />
-    <Button onClick={handleSubmit(onSubmit)}>Submit</Button>
+    <Button
+      type="submit"
+      variant="contained"
+      >Submit</Button>
+
+      <div>{JSON.stringify(watch(), null, 2)}</div>
   </form>;
 }
 

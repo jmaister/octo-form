@@ -1,4 +1,4 @@
-import { Input, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Input, MenuItem, Select, TextField } from "@mui/material";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,12 @@ import * as yup from "yup";
 import { DateTimePicker, DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { FormInputText } from "./components/FormInputText";
+import { FormInputDropdown } from "./components/FormInputDropdown";
+import { FormInputDate } from "./components/FormInputDate";
+import { FormInputDateTime } from "./components/FormInputDateTime";
+import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
+import { FormInputSlider } from "./components/FormInputSlider";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -15,7 +21,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
-type iceCreamType = {
+type OptionLabel = {
     label: string
     value: string
 }
@@ -27,22 +33,38 @@ type InputType = {
   age: number;
   todaysDate: Date;
   todaysDateAndTime: Date;
+  days: string[];
+  volume: number;
 };
 
-const options : iceCreamType[] = [
+const iceCreamOptions : OptionLabel[] = [
     { value: "", label: "-- no flavor --" },
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
     { value: "vanilla", label: "Vanilla" },
   ];
 
+const dayOptions : OptionLabel[] = [
+    {value:"", label:"-- no day --"},
+    {value:"Monday", label:"Monday"},
+    {value:"Tuesday", label:"Tuesday"},
+    {value:"Wednesday", label:"Wednesday"},
+    {value:"Thursday", label:"Thursday"},
+    {value:"Friday", label:"Friday"},
+    {value:"Saturday", label:"Saturday"},
+    {value:"Sunday", label:"Sunday"},
+];
+
+
 const schema = yup.object({
     example: yup.string(),
     exampleRequired: yup.string().required(),
-    iceCreamType: yup.string().oneOf(options.filter(o => o.value != "").map(option => option.value)),
+    iceCreamType: yup.string().oneOf(iceCreamOptions.filter(o => o.value != "").map(option => option.value)),
     age: yup.number().positive().integer().moreThan(0).required(),
     todaysDate: yup.date().required(),
     todaysDateAndTime: yup.date().required(),
+    days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.value != "").map(option => option.value))).required(),
+    volume: yup.number().positive().integer().min(0).max(10).required(),
   }).required();
 
 function FutureForm() {
@@ -51,12 +73,14 @@ function FutureForm() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<InputType>({
     resolver: yupResolver(schema),
     defaultValues: {
         age: 1,
         iceCreamType: "",
         todaysDate: new Date(),
+        volume: 3,
     }
   });
 
@@ -89,11 +113,19 @@ function FutureForm() {
             required={false}
             {...field}
             >
-            {options.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem >)}
+            {iceCreamOptions.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem >)}
         </Select>}
       />
       <p>{errors.iceCreamType?.message}</p>
       <br />
+    
+    <FormInputDropdown
+        name="iceCreamType"
+        control={control}
+        label="Ice Cream Type"
+        options={iceCreamOptions}
+      />
+      <br/>
 
     <Controller
         name="age"
@@ -103,34 +135,42 @@ function FutureForm() {
       <p>{errors.age?.message}</p>
       <br />
 
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name="todaysDate"
-            control={control}
-            render={({ field }) =>         <DesktopDatePicker
-                label="Date desktop"
-                inputFormat="MM/dd/yyyy"
-                renderInput={(params) => <TextField {...params} />}
-                {...field}
-                />}
-            />
-            <p>{errors.todaysDate?.message}</p>
-    </LocalizationProvider>
+    <FormInputText control={control} name="age" label="Age" />
 
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name="todaysDateAndTime"
-            control={control}
-            render={({ field }) =>         <DateTimePicker
-                label="Date and time desktop"
-                renderInput={(params) => <TextField {...params} />}
-                {...field}
-                />}
-            />
-            <p>{errors.todaysDateAndTime?.message}</p>
-    </LocalizationProvider>
+    <FormInputDate
+        name="todaysDate"
+        control={control}
+        label="Today's date"
+      />
 
-    <input type="submit" />
+    <FormInputDateTime
+        name="todaysDateAndTime"
+        control={control}
+        label="Today's date and time"
+      />
+
+    <FormInputMultiCheckbox
+        name="days"
+        control={control}
+        label="Days"
+        options={dayOptions}
+      />
+
+    <FormInputSlider
+        name="volume"
+        control={control}
+        label="Volume"
+        min={0}
+        max={10}
+        step={1}
+      />
+
+    <Button
+      type="submit"
+      variant="contained"
+      >Submit</Button>
+
+      <div>{JSON.stringify(watch(), null, 2)}</div>
   </form>;
 }
 

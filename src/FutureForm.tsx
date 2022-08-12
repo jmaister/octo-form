@@ -8,6 +8,7 @@ import { DateTimePicker, DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { FormInputText } from "./components/FormInputText";
+import { FormInputDropdown } from "./components/FormInputDropdown";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -95,6 +96,14 @@ function FutureForm() {
       />
       <p>{errors.iceCreamType?.message}</p>
       <br />
+    
+    <FormInputDropdown
+        name="iceCreamType"
+        control={control}
+        label="Ice Cream Type"
+        options={options}
+      />
+      <br/>
 
     <Controller
         name="age"

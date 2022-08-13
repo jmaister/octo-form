@@ -4,17 +4,6 @@ import { Controller } from "react-hook-form";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-const ITEM_HEIGHT = 54;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 export const FormInputMultiCheckbox = ({name, control, label, options}: FormInputPropsWithOptions) => {
     
 
@@ -48,7 +37,6 @@ export const FormInputMultiCheckbox = ({name, control, label, options}: FormInpu
           onChange={onChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
           fullWidth
         >
           {generateSelectOptions(value)}

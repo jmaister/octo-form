@@ -1,6 +1,6 @@
-import { Button, Input, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Container, Stack } from "@mui/material";
 
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
@@ -11,7 +11,6 @@ import { FormInputDateTime } from "./components/FormInputDateTime";
 import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
 import { FormInputSlider } from "./components/FormInputSlider";
 import { OptionLabel } from "./components/FormInputProps";
-import { InputType } from "./Types";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -21,97 +20,88 @@ import { InputType } from "./Types";
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
 
-
-
-
 const iceCreamOptions : OptionLabel[] = [
-    { value: "", label: "-- no flavor --" },
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  { value: "", label: "-- no flavor --" },
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
 
 const dayOptions : OptionLabel[] = [
-    {value:"", label:"-- no day --"},
-    {value:"Monday", label:"Monday"},
-    {value:"Tuesday", label:"Tuesday"},
-    {value:"Wednesday", label:"Wednesday"},
-    {value:"Thursday", label:"Thursday"},
-    {value:"Friday", label:"Friday"},
-    {value:"Saturday", label:"Saturday"},
-    {value:"Sunday", label:"Sunday"},
+  {value:"", label:"-- no day --"},
+  {value:"Monday", label:"Monday"},
+  {value:"Tuesday", label:"Tuesday"},
+  {value:"Wednesday", label:"Wednesday"},
+  {value:"Thursday", label:"Thursday"},
+  {value:"Friday", label:"Friday"},
+  {value:"Saturday", label:"Saturday"},
+  {value:"Sunday", label:"Sunday"},
 ];
 
 
+// https://github.com/jquense/yup#typescript-integration
+const schema = yup.object({
+  example: yup.string(),
+  exampleRequired: yup.string().required(),
+  iceCreamType: yup.string().oneOf(iceCreamOptions.filter(o => o.label != "").map(option => option.value.toString())),
+  age: yup.number().positive().integer().moreThan(0).required(),
+  todaysDate: yup.date().required(),
+  todaysDateAndTime: yup.date().required(),
+  days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.label != "").map(option => option.value.toString()))).required(),
+  volume: yup.number().positive().integer().min(0).max(10).required(),
+}).required();
+
+export type FutureFormType = yup.InferType<typeof schema>;
+
+/*
+export type InputType = {
+  example: string;
+  exampleRequired: string;
+  iceCreamType: string;
+  age: number;
+  todaysDate: Date;
+  todaysDateAndTime: Date;
+  days: string[];
+  volume: number;
+};
+*/
+
 
 export interface FutureFormProps {
-  defaultValues: InputType;
-  schema: yup.SchemaOf<InputType>;
+  defaultValues: FutureFormType;
 }
 
 
-export default function FutureForm({ defaultValues, schema }: FutureFormProps) {
+export default function FutureForm({ defaultValues }: FutureFormProps) {
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<InputType>({
+  } = useForm<FutureFormType>({
     resolver: yupResolver(schema),
     defaultValues: defaultValues
   });
 
-  const onSubmit: SubmitHandler<InputType> = (data) => {
+  const onSubmit: SubmitHandler<FutureFormType> = (data) => {
     console.log(data);
   }
 
 
   return <form onSubmit={handleSubmit(onSubmit)}>
-    <Controller
-        name="example"
-        control={control}
-        defaultValue=""
-        render={({ field }) => <Input placeholder="example2" title="example1" {...field} />}
-      />
-            <p>{errors.example?.message}</p>
+    <Stack spacing={2}>
 
-    <br />
+    <FormInputText control={control} name="example" label="Example" />
 
+    <FormInputText control={control} name="exampleRequired" label="Example required" />
 
-    <label htmlFor="exampleRequired">Example Required</label>
-    <input {...register("exampleRequired", { required: true })} />
-    {errors.exampleRequired?.message}
-    <br />
-
-    <Controller
-        name="iceCreamType"
-        control={control}
-        render={({ field }) => <Select
-            required={false}
-            {...field}
-            >
-            {iceCreamOptions.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem >)}
-        </Select>}
-      />
-      <p>{errors.iceCreamType?.message}</p>
-      <br />
-    
     <FormInputDropdown
         name="iceCreamType"
         control={control}
         label="Ice Cream Type"
         options={iceCreamOptions}
       />
-      <br/>
-
-    <Controller
-        name="age"
-        control={control}
-        render={({ field }) => <TextField label="Age" placeholder="Age" {...field} />}
-      />
-      <p>{errors.age?.message}</p>
-      <br />
 
     <FormInputText control={control} name="age" label="Age" />
 
@@ -142,6 +132,7 @@ export default function FutureForm({ defaultValues, schema }: FutureFormProps) {
         max={10}
         step={1}
       />
+    </Stack>
 
     <Button
       type="submit"

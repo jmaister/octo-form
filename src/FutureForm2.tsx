@@ -1,6 +1,6 @@
 import { Button, Container, Stack } from "@mui/material";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Control, SubmitHandler, useForm, UseFormWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
@@ -41,34 +41,24 @@ const dayOptions : OptionLabel[] = [
 ];
 
 
+export interface FormRenderProps<T> {
+  control: Control;
+  watch: UseFormWatch<T>;
 
-export type FutureFormType = yup.InferType<typeof schema>;
-
-/*
-export type InputType = {
-  example: string;
-  exampleRequired: string;
-  iceCreamType: string;
-  age: number;
-  todaysDate: Date;
-  todaysDateAndTime: Date;
-  days: string[];
-  volume: number;
-};
-*/
-
-export interface FormChildrenProps {
-  control: any;
 }
 
+
+
 export interface FutureFormProps<T> {
-  defaultValues: FutureFormType;
+  defaultValues: T;
   schema: yup.AnyObjectSchema;
-  children: React.ReactNode;
+  children(props: FormRenderProps<T>): React.ReactNode;
 }
 
 
 export default function FutureForm2<T>({ defaultValues, schema, children }: FutureFormProps<T>) {
+  type FutureFormType = yup.InferType<typeof schema>;
+
   const {
     control,
     register,
@@ -86,12 +76,8 @@ export default function FutureForm2<T>({ defaultValues, schema, children }: Futu
 
 
   return <form onSubmit={handleSubmit(onSubmit)}>
-    {
-        React.Children.map(children, (child) =>
-          React.cloneElement(child, {
-              className: `${child.props.className} img-special-class`
-            })
-        )
+      {
+      children({ control, watch })
       }
   </form>;
 };

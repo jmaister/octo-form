@@ -7,6 +7,8 @@ import { FormInputText } from "./components/FormInputText";
 import { FormInputDropdown } from "./components/FormInputDropdown";
 import { FormInputDate } from "./components/FormInputDate";
 import { FormInputDateTime } from "./components/FormInputDateTime";
+import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
+import { FormInputSlider } from "./components/FormInputSlider";
 
 
 export interface FutureFormProps<T> {

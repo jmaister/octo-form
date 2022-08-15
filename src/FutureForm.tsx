@@ -47,7 +47,7 @@ const schema = yup.object({
   age: yup.number().positive().integer().moreThan(0).required(),
   todaysDate: yup.date().required(),
   todaysDateAndTime: yup.date().required(),
-  days: yup.array().of(yup.string().oneOf(dayOptions.filter(o => o.label != "").map(option => option.value.toString()))).required(),
+  days: yup.array().of(yup.string().required().oneOf(dayOptions.filter(o => o.label != "").map(option => option.value.toString()))).required(),
   volume: yup.number().positive().integer().min(0).max(10).required(),
 }).required();
 

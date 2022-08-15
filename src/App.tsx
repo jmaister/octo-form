@@ -1,5 +1,9 @@
 import './App.css'
 import FutureForm, { FutureFormType } from './FutureForm'
+import FutureForm2 from './FutureForm2';
+
+import * as yup from "yup";
+import { SampleForm } from './SampleForm';
 
 function App() {
 
@@ -16,12 +20,15 @@ function App() {
 };
 
 
+
   return (
     <div className="App">
       <h1>Future Form</h1>
       <FutureForm
         defaultValues={defaultValues}
         />
+      <SampleForm defaultValues={defaultValues} />
+      
     </div>
   )
 }

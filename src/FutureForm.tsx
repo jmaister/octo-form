@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { OptionLabel } from "./components/FormInputProps";
-import React from "react";
+import { ReactNode } from "react";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -45,7 +45,7 @@ export interface FormRenderProps<T> {
 export interface FutureFormProps<T> {
   defaultValues: T;
   schema: yup.AnyObjectSchema;
-  children(props: FormRenderProps<T>): React.ReactNode;
+  children(props: FormRenderProps<T>): ReactNode;
 }
 
 

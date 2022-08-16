@@ -1,7 +1,7 @@
 
+import TextField from "@mui/material/TextField";
 
 import { Controller } from "react-hook-form";
-import { TextField } from "@mui/material";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 

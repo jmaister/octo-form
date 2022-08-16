@@ -2,7 +2,9 @@ import FutureForm from "./FutureForm";
 
 import * as yup from "yup";
 import { OptionLabel } from "./components/FormInputProps";
-import { Button, Container, Stack } from "@mui/material";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+
 import { FormInputText } from "./components/FormInputText";
 import { FormInputDropdown } from "./components/FormInputDropdown";
 import { FormInputDate } from "./components/FormInputDate";

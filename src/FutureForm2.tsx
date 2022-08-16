@@ -22,29 +22,28 @@ import React from "react";
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
 
-const iceCreamOptions : OptionLabel[] = [
+const iceCreamOptions: OptionLabel[] = [
   { value: "", label: "-- no flavor --" },
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" },
 ];
 
-const dayOptions : OptionLabel[] = [
-  {value:"", label:"-- no day --"},
-  {value:"Monday", label:"Monday"},
-  {value:"Tuesday", label:"Tuesday"},
-  {value:"Wednesday", label:"Wednesday"},
-  {value:"Thursday", label:"Thursday"},
-  {value:"Friday", label:"Friday"},
-  {value:"Saturday", label:"Saturday"},
-  {value:"Sunday", label:"Sunday"},
+const dayOptions: OptionLabel[] = [
+  { value: "", label: "-- no day --" },
+  { value: "Monday", label: "Monday" },
+  { value: "Tuesday", label: "Tuesday" },
+  { value: "Wednesday", label: "Wednesday" },
+  { value: "Thursday", label: "Thursday" },
+  { value: "Friday", label: "Friday" },
+  { value: "Saturday", label: "Saturday" },
+  { value: "Sunday", label: "Sunday" },
 ];
 
 
 export interface FormRenderProps<T> {
   control: Control;
   watch: UseFormWatch<T>;
-
 }
 
 
@@ -76,9 +75,9 @@ export default function FutureForm2<T>({ defaultValues, schema, children }: Futu
 
 
   return <form onSubmit={handleSubmit(onSubmit)}>
-      {
+    {
       children({ control, watch })
-      }
+    }
   </form>;
 };
 

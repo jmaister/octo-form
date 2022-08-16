@@ -4,9 +4,10 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TextField } from "@mui/material";
 import { FormInputProps } from "./FormInputProps";
+import { isRequired } from "../utils";
 
 
-export const FormInputDate = ({ name, control, label } : FormInputProps) => {
+export const FormInputDate = ({ name, control, schema, label } : FormInputProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Controller
@@ -16,8 +17,11 @@ export const FormInputDate = ({ name, control, label } : FormInputProps) => {
                 <DatePicker
                     label={label}
                     renderInput={(params) => 
-                    <TextField {...params} />}
-                        {...field}
+                    <TextField 
+                      {...params} 
+                      required={isRequired(schema, name)}
+                      />}
+                    {...field}
                     />
                 }
             />

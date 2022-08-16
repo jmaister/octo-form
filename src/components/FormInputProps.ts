@@ -1,6 +1,9 @@
+import * as yup from "yup";
+
 export interface FormInputProps {
   name: string;
   control: any;
+  schema: yup.AnyObjectSchema;
   label: string;
 }
 

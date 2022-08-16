@@ -1,10 +1,11 @@
 
 import { Checkbox, FormControl, FormHelperText, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { Controller } from "react-hook-form";
+import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-export const FormInputMultiCheckbox = ({name, control, label, options}: FormInputPropsWithOptions) => {
+export const FormInputMultiCheckbox = ({name, control, schema, label, options}: FormInputPropsWithOptions) => {
     
 
   const generateSelectOptions = (value:any) => {
@@ -38,6 +39,7 @@ export const FormInputMultiCheckbox = ({name, control, label, options}: FormInpu
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           fullWidth
+          required={isRequired(schema, name)}
         >
           {generateSelectOptions(value)}
         </Select>

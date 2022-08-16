@@ -1,15 +1,12 @@
 import './App.css'
-import FutureForm, { FutureFormType } from './FutureForm'
-import FutureForm2 from './FutureForm2';
 
-import * as yup from "yup";
-import { SampleForm } from './SampleForm';
+import { SampleForm, SampleFormType } from './SampleForm';
 import { Container } from '@mui/material';
 
 function App() {
 
 
-  const defaultValues: FutureFormType = {
+  const defaultValues: SampleFormType = {
     age: 1,
     iceCreamType: "",
     todaysDate: new Date(),
@@ -25,7 +22,7 @@ function App() {
   return (
     <Container className="App">
       <h1>Future Form</h1>
-      {/* <FutureForm defaultValues={defaultValues} /> */}
+
       <SampleForm defaultValues={defaultValues} />
 
     </Container>

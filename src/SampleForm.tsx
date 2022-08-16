@@ -11,11 +11,8 @@ import { FormInputDate } from "./components/FormInputDate";
 import { FormInputDateTime } from "./components/FormInputDateTime";
 import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
 import { FormInputSlider } from "./components/FormInputSlider";
+import { SubmitHandler } from "react-hook-form";
 
-
-export interface FutureFormProps<T> {
-  defaultValues: T;
-}
 
 const iceCreamOptions: OptionLabel[] = [
   { value: "", label: "-- no flavor --" },
@@ -48,10 +45,18 @@ const schema = yup.object({
 
 export type SampleFormType = yup.InferType<typeof schema>;
 
-export function SampleForm<T>({ defaultValues }: FutureFormProps<T>) {
+export interface SampleFormProps {
+  defaultValues: SampleFormType;
+}
+
+export function SampleForm({ defaultValues }: SampleFormProps) {
+
+  const onSubmit: SubmitHandler<SampleFormType> = (data) => {
+    console.log(data);
+  }
 
 
-  return <FutureForm defaultValues={defaultValues} schema={schema}>
+  return <FutureForm defaultValues={defaultValues} schema={schema} onSubmit={onSubmit}>
     {({ config, watch }) => {
       return <>
         <Stack spacing={2}>

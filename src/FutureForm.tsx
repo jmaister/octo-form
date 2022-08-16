@@ -45,11 +45,12 @@ export interface FormRenderProps<T> {
 export interface FutureFormProps<T> {
   defaultValues: T;
   schema: yup.AnyObjectSchema;
+  onSubmit: SubmitHandler<T>;
   children(props: FormRenderProps<T>): ReactNode;
 }
 
 
-export default function FutureForm<T>({ defaultValues, schema, children }: FutureFormProps<T>) {
+export default function FutureForm<T>({ defaultValues, schema, onSubmit, children }: FutureFormProps<T>) {
   type InferredType = yup.InferType<typeof schema>;
 
   const {
@@ -63,14 +64,12 @@ export default function FutureForm<T>({ defaultValues, schema, children }: Futur
     defaultValues: defaultValues
   });
 
-  const onSubmit: SubmitHandler<InferredType> = (data) => {
-    console.log(data);
-  }
 
   const renderConfig: FromRenderConfig = {
     control,
     schema,
   };
+
   const renderProps : FormRenderProps<InferredType> = {
     config: renderConfig,
     watch,

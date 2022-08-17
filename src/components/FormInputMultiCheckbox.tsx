@@ -1,21 +1,18 @@
 
-import { Checkbox, FormControl, FormHelperText, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import ListItemText from "@mui/material/ListItemText";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select from "@mui/material/Select";
+
 import { Controller } from "react-hook-form";
+import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-const ITEM_HEIGHT = 54;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-export const FormInputMultiCheckbox = ({name, control, label, options}: FormInputPropsWithOptions) => {
+export const FormInputMultiCheckbox = ({name, control, schema, label, options}: FormInputPropsWithOptions) => {
     
 
   const generateSelectOptions = (value:any) => {
@@ -48,8 +45,8 @@ export const FormInputMultiCheckbox = ({name, control, label, options}: FormInpu
           onChange={onChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
           fullWidth
+          required={isRequired(schema, name)}
         >
           {generateSelectOptions(value)}
         </Select>

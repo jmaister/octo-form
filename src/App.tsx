@@ -1,14 +1,31 @@
-import { useState } from 'react'
 import './App.css'
-import FutureForm from './FutureForm'
+
+import { SampleForm, SampleFormType } from './SampleForm';
+import Container from '@mui/material/Container';
 
 function App() {
 
+
+  const defaultValues: SampleFormType = {
+    age: 1,
+    iceCreamType: "",
+    todaysDate: new Date(),
+    volume: 3,
+    days: [],
+    todaysDateAndTime: new Date(),
+    example: "",
+    exampleRequired: "",
+  };
+
+
+
   return (
-    <div className="App">
+    <Container className="App">
       <h1>Future Form</h1>
-      <FutureForm />
-    </div>
+
+      <SampleForm defaultValues={defaultValues} />
+
+    </Container>
   )
 }
 

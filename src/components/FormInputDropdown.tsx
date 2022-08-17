@@ -1,10 +1,16 @@
 
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
 import { Controller } from "react-hook-form";
-import {  FormInputPropsWithOptions } from "./FormInputProps";
+import { isRequired } from "../utils";
+import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-export const FormInputDropdown= ({name, control, label, options}: FormInputPropsWithOptions) => {
+export const FormInputDropdown= ({name, control, schema, label, options}: FormInputPropsWithOptions) => {
     
 
   const generateSelectOptions = () => {
@@ -33,6 +39,7 @@ export const FormInputDropdown= ({name, control, label, options}: FormInputProps
                 onChange={onChange}
                 value={value}
                 label={label}
+                required={isRequired(schema, name)}
                 >
             {generateSelectOptions()}
             </Select>

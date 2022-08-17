@@ -2,13 +2,16 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
+import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
+import { MuyFormContext } from "../MuyForm";
 import { isRequired } from "../utils";
 import { FormInputSliderProps } from "./FormInputProps";
 
 
-export const FormInputSlider = ({ name, control, schema, label, min = 0, max = 100, step = 1 }: FormInputSliderProps) => {
+export const FormInputSlider = ({ name, label, min = 0, max = 100, step = 1 }: FormInputSliderProps) => {
+  const {control, schema} = useContext(MuyFormContext);
 
   return <Controller
     name={name}

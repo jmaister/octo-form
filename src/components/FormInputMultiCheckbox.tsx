@@ -6,14 +6,17 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
+import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
+import { MuyFormContext } from "../MuyForm";
 import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-export const FormInputMultiCheckbox = ({name, control, schema, label, options}: FormInputPropsWithOptions) => {
-    
+export const FormInputMultiCheckbox = ({name, label, options}: FormInputPropsWithOptions) => {
+  const {control, schema} = useContext(MuyFormContext);
+
 
   const generateSelectOptions = (value:any) => {
     return options.map((option) => {

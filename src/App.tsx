@@ -1,11 +1,10 @@
 import './App.css'
 
-import { SampleForm, SampleFormType } from './SampleForm';
 import Container from '@mui/material/Container';
+import { IceCreamForm, IceCreamType } from './IceCreamForm';
+import { SampleForm, SampleFormType } from './SampleForm';
 
 function App() {
-
-
   const defaultValues: SampleFormType = {
     age: 1,
     iceCreamType: "",
@@ -15,15 +14,25 @@ function App() {
     todaysDateAndTime: new Date(),
     example: "",
     exampleRequired: "",
+}
+
+
+  const defaultIceCreamValues: IceCreamType = {
+    name: "",
+    birthday: new Date(),
+    rating: 0,
+    iceCreamType: "",
   };
-
-
 
   return (
     <Container className="App">
-      <h1>Future Form</h1>
+      <h1>MuyForm</h1>
 
-      <SampleForm defaultValues={defaultValues} />
+      <SampleForm defaultValues={defaultValues}/>
+
+      <h2>IceCream Form</h2>
+
+      <IceCreamForm defaultValues={defaultIceCreamValues} />
 
     </Container>
   )

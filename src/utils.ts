@@ -6,6 +6,9 @@ export function isRequired(schema: yup.AnyObjectSchema, name:string) : boolean {
       return false;
     }
     const field = schema.fields[name];
+    if (!field) {
+      return false;
+    }
     if (field.tests.length === 0) {
       return false;
     }

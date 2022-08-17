@@ -7,8 +7,8 @@ export interface FormInputProps {
 
 
 export interface OptionLabel {
-  value: string | number;
   label: string;
+  value: string | number;
 }
 
 export interface FormInputPropsWithOptions extends FormInputProps {

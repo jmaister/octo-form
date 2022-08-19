@@ -10,8 +10,13 @@ import { FormInputMultiCheckbox } from './components/FormInputMultiCheckbox';
 import { FormInputSlider } from './components/FormInputSlider';
 import { FormInputText } from './components/FormInputText';
 
+// Other
+import {FormInputProps, FormInputPropsWithOptions, OptionLabel} from './components/FormInputProps';
+
+
 export {
     OctoForm,
+
     FormInputDate,
     FormInputDateTime,
     FormInputDropdown,
@@ -20,4 +25,8 @@ export {
     FormInputText,
 }
 
-
+export type {
+    FormInputProps,
+    FormInputPropsWithOptions,
+    OptionLabel,
+}

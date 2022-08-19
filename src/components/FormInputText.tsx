@@ -5,7 +5,7 @@ import { Controller } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { useContext } from "react";
-import { MuyFormContext } from "../MuyForm";
+import { MuyFormContext } from "../OctoForm";
 
 export const FormInputText = ({ name, label }: FormInputProps) => {
   const {control, schema} = useContext(MuyFormContext);

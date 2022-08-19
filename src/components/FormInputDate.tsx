@@ -5,9 +5,13 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
+import { MuyFormContext } from "../MuyForm";
+import { useContext } from "react";
 
 
-export const FormInputDate = ({ name, control, schema, label } : FormInputProps) => {
+export const FormInputDate = ({ name, label } : FormInputProps) => {
+  const {control, schema} = useContext(MuyFormContext);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Controller

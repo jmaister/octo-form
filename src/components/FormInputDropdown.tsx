@@ -4,14 +4,17 @@ import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
+import { SchemaDescription } from "yup/lib/schema";
+import { MuyFormContext } from "../MuyForm";
 import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
-export const FormInputDropdown= ({name, control, schema, label, options}: FormInputPropsWithOptions) => {
-    
+export const FormInputDropdown= ({name, label, options}: FormInputPropsWithOptions) => {
+  const {control, schema} = useContext(MuyFormContext);
 
   const generateSelectOptions = () => {
     return options.map((option) => {

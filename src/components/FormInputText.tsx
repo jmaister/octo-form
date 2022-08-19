@@ -4,8 +4,12 @@ import TextField from "@mui/material/TextField";
 import { Controller } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
+import { useContext } from "react";
+import { MuyFormContext } from "../MuyForm";
 
-export const FormInputText = ({ name, control, label, schema }: FormInputProps) => {
+export const FormInputText = ({ name, label }: FormInputProps) => {
+  const {control, schema} = useContext(MuyFormContext);
+
     return (
       <Controller
         name={name}

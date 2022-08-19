@@ -1,4 +1,3 @@
-import FutureForm from "./FutureForm";
 
 import * as yup from "yup";
 import { OptionLabel } from "./components/FormInputProps";
@@ -12,6 +11,7 @@ import { FormInputDateTime } from "./components/FormInputDateTime";
 import { FormInputMultiCheckbox } from "./components/FormInputMultiCheckbox";
 import { FormInputSlider } from "./components/FormInputSlider";
 import { SubmitHandler } from "react-hook-form";
+import MuyForm from "./MuyForm";
 
 
 const iceCreamOptions: OptionLabel[] = [
@@ -56,50 +56,40 @@ export function SampleForm({ defaultValues }: SampleFormProps) {
   }
 
 
-  return <FutureForm defaultValues={defaultValues} schema={schema} onSubmit={onSubmit}>
-    {({ config, watch }) => {
-      return <>
+  return <MuyForm defaultValues={defaultValues} schema={schema} onSubmit={onSubmit}>
         <Stack spacing={2}>
 
-          <FormInputText {...config} name="example" label="Example" />
+          <FormInputText name="example" label="Example" />
 
-          <FormInputText {...config} name="exampleRequired" label="Example required" />
+          <FormInputText name="exampleRequired" label="Example required" />
 
           <FormInputDropdown
             name="iceCreamType"
-            {...config} 
             label="Ice Cream Type"
             options={iceCreamOptions}
           />
 
-          <FormInputText {...config} name="age" label="Age" />
+          <FormInputText name="age" label="Age" />
 
           <FormInputDate
             name="todaysDate"
-            {...config}
             label="Today's date"
           />
 
           <FormInputDateTime
             name="todaysDateAndTime"
-            {...config} 
             label="Today's date and time"
           />
 
           <FormInputMultiCheckbox
             name="days"
-            {...config}
             label="Days"
             options={dayOptions}
           />
 
           <FormInputSlider
             name="volume"
-            {...config} 
             label="Volume"
-            min={0}
-            max={10}
-            step={1}
           />
 
           <Stack direction="row">
@@ -110,11 +100,10 @@ export function SampleForm({ defaultValues }: SampleFormProps) {
           </Stack>
         </Stack>
 
+{/*
         <div>{JSON.stringify(watch(), null, 2)}</div>
-      </>
-    }}
+*/}
 
-
-  </FutureForm>
+  </MuyForm>
 
 }

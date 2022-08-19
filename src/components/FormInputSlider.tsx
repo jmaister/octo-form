@@ -1,14 +1,22 @@
 
-import Box from "@mui/material/Box";
+import { Watch } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
+import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
-import { isRequired } from "../utils";
-import { FormInputSliderProps } from "./FormInputProps";
+import { MuyFormContext } from "../MuyForm";
+import { findParamNumber, findTest, isRequired } from "../utils";
+import { FormInputProps } from "./FormInputProps";
 
 
-export const FormInputSlider = ({ name, control, schema, label, min = 0, max = 100, step = 1 }: FormInputSliderProps) => {
+export const FormInputSlider = ({ name, label }: FormInputProps) => {
+  const {control, schema, watch} = useContext(MuyFormContext);
+
+  const min = findParamNumber(name, schema, "min", "min");
+  const max = findParamNumber(name, schema, "max", "max");
+  const step = findTest(name, schema, "integer") ? 1 : 0.01;
 
   return <Controller
     name={name}
@@ -17,8 +25,10 @@ export const FormInputSlider = ({ name, control, schema, label, min = 0, max = 1
       field: { onChange, value },
       fieldState: { error },
     }) => (
-      <Box>
-        <Typography gutterBottom align="left">{label}{isRequired(schema, name) ? " *" : null}</Typography>
+      <Stack direction="row">
+        <Typography gutterBottom align="left" whiteSpace={"pre"} marginRight={3}>
+          {label}{isRequired(schema, name) ? " * " : null}: {watch(name)}
+        </Typography>
         <Slider
           onChange={onChange}
           value={value}
@@ -26,7 +36,7 @@ export const FormInputSlider = ({ name, control, schema, label, min = 0, max = 1
           max={max}
           step={step}
         />
-      </Box>
+      </Stack>
     )}
   />
 };

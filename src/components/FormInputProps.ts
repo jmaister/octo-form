@@ -15,9 +15,3 @@ export interface FormInputPropsWithOptions extends FormInputProps {
   options: OptionLabel[];
 }
 
-export interface FormInputSliderProps extends FormInputProps {
-  min: number;
-  max: number;
-  step: number;
-}
-

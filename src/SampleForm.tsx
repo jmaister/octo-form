@@ -90,9 +90,6 @@ export function SampleForm({ defaultValues }: SampleFormProps) {
           <FormInputSlider
             name="volume"
             label="Volume"
-            min={0}
-            max={10}
-            step={1}
           />
 
           <Stack direction="row">

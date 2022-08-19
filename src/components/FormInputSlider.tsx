@@ -6,12 +6,16 @@ import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
 import { MuyFormContext } from "../MuyForm";
-import { isRequired } from "../utils";
-import { FormInputSliderProps } from "./FormInputProps";
+import { findParamNumber, findTest, isRequired } from "../utils";
+import { FormInputProps } from "./FormInputProps";
 
 
-export const FormInputSlider = ({ name, label, min = 0, max = 100, step = 1 }: FormInputSliderProps) => {
+export const FormInputSlider = ({ name, label }: FormInputProps) => {
   const {control, schema} = useContext(MuyFormContext);
+
+  const min = findParamNumber(name, schema, "min", "min");
+  const max = findParamNumber(name, schema, "max", "max");
+  const step = findTest(name, schema, "integer") ? 1 : 0.01;
 
   return <Controller
     name={name}

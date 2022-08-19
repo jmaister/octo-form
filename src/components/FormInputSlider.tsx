@@ -1,5 +1,4 @@
 
-import { Watch } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";

@@ -1,10 +1,8 @@
-import * as yup from "yup";
 
 export interface FormInputProps {
   name: string;
   label: string;
 }
-
 
 export interface OptionLabel {
   label: string;

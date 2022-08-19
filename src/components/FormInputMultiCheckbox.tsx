@@ -17,7 +17,6 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 export const FormInputMultiCheckbox = ({name, label, options}: FormInputPropsWithOptions) => {
   const {control, schema} = useContext(MuyFormContext);
 
-
   const generateSelectOptions = (value:any) => {
     return options.map((option) => {
       return (

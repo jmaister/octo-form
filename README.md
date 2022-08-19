@@ -46,3 +46,11 @@ const schema = yup.object({
 # Links
 
 Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
+
+
+
+# TODO
+
+- Export the rest of types in index.ts
+- Logo on README.md
+- Example of usage

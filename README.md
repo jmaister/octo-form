@@ -54,3 +54,4 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 - Export the rest of types in index.ts
 - Logo on README.md
 - Example of usage
+- Rename GitHub project to octo-form

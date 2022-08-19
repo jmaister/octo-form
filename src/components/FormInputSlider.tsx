@@ -1,5 +1,6 @@
 
-import Box from "@mui/material/Box";
+import { Watch } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useContext } from "react";
@@ -11,7 +12,7 @@ import { FormInputProps } from "./FormInputProps";
 
 
 export const FormInputSlider = ({ name, label }: FormInputProps) => {
-  const {control, schema} = useContext(MuyFormContext);
+  const {control, schema, watch} = useContext(MuyFormContext);
 
   const min = findParamNumber(name, schema, "min", "min");
   const max = findParamNumber(name, schema, "max", "max");
@@ -24,8 +25,10 @@ export const FormInputSlider = ({ name, label }: FormInputProps) => {
       field: { onChange, value },
       fieldState: { error },
     }) => (
-      <Box>
-        <Typography gutterBottom align="left">{label}{isRequired(schema, name) ? " *" : null}</Typography>
+      <Stack direction="row">
+        <Typography gutterBottom align="left" whiteSpace={"pre"} marginRight={3}>
+          {label}{isRequired(schema, name) ? " * " : null}: {watch(name)}
+        </Typography>
         <Slider
           onChange={onChange}
           value={value}
@@ -33,7 +36,7 @@ export const FormInputSlider = ({ name, label }: FormInputProps) => {
           max={max}
           step={step}
         />
-      </Box>
+      </Stack>
     )}
   />
 };

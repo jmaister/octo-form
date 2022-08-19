@@ -9,7 +9,7 @@ import Select from "@mui/material/Select";
 import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
-import { MuyFormContext } from "../MuyForm";
+import { MuyFormContext } from "../OctoForm";
 import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 

@@ -1,22 +1,20 @@
 
-# MuyForm
+# Octo Forms
 
 Form wrapper for React + Material-UI + react-hook-form + yup.
-
-Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
 # Install
 
 With npm:
 
 ```bash
-npm install --save muyform
+npm install --save octo-form
 ```
 
 or yarn:
 
 ```bash
-yarn add muyform
+yarn add octo-form
 ```
 
 # Usage
@@ -24,7 +22,7 @@ yarn add muyform
 1. Import the component:
 
 ```jsx
-import { MuyForm } from 'muyform';
+import { OctoForm } from 'octo-form';
 ```
 
 2. Create a yup schema
@@ -45,3 +43,6 @@ const schema = yup.object({
 ```
 
 
+# Links
+
+Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/

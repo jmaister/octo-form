@@ -1,20 +1,30 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+    })
+  ],
   build: {
+    lib: {
+      entry: 'src/index.ts',
+      name: 'OctoForms',
+      fileName: (format) => `octo-form.${format}.js`,
+    },
     rollupOptions: {
+      external: ['react', 'react-dom', 'styled-components'],
       output: {
-        manualChunks: {
-          'yup': ['yup'],
-          'mui': ['@mui/material'],
-          'mui-date': ['@mui/x-date-pickers', '@date-io/date-fns', 'date-fns'],
-          'mui-icons': ['@mui/icons-material'],
-          'hooks': ['react-hook-form', '@hookform/resolvers'],
-        }
-      }
-    }
+          globals: {
+              'react': 'React',
+              'react-dom': 'ReactDOM',
+              'styled-components': 'styled',
+          },
+      },
+  },
   }
 })

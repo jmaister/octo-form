@@ -6,12 +6,12 @@ import TextField from "@mui/material/TextField";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { useContext } from "react";
-import { MuyFormContext } from "../OctoForm";
+import { OctoFormContext } from "../OctoForm";
 
 
 export const FormInputDateTime = ({ name, label } : FormInputProps) => {
 
-  const {control, schema} = useContext(MuyFormContext);
+  const {control, schema} = useContext(OctoFormContext);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

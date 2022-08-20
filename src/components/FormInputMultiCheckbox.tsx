@@ -9,13 +9,13 @@ import Select from "@mui/material/Select";
 import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
-import { MuyFormContext } from "../OctoForm";
+import { OctoFormContext } from "../OctoForm";
 import { isRequired } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 export const FormInputMultiCheckbox = ({name, label, options}: FormInputPropsWithOptions) => {
-  const {control, schema} = useContext(MuyFormContext);
+  const {control, schema} = useContext(OctoFormContext);
 
   const generateSelectOptions = (value:any) => {
     return options.map((option) => {

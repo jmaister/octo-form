@@ -5,13 +5,13 @@ import Typography from "@mui/material/Typography";
 import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
-import { MuyFormContext } from "../OctoForm";
+import { OctoFormContext } from "../OctoForm";
 import { findParamNumber, findTest, isRequired } from "../utils";
 import { FormInputProps } from "./FormInputProps";
 
 
 export const FormInputSlider = ({ name, label }: FormInputProps) => {
-  const {control, schema, watch} = useContext(MuyFormContext);
+  const {control, schema, watch} = useContext(OctoFormContext);
 
   const min = findParamNumber(name, schema, "min", "min");
   const max = findParamNumber(name, schema, "max", "max");

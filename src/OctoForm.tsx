@@ -26,9 +26,9 @@ export interface FutureFormProps<T> {
   children?: React.ReactNode;
 }
 
-export const MuyFormContext = createContext({} as FormRenderContext<any>);
+export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export default function MuyForm<T>({ defaultValues, schema, onSubmit, children }: FutureFormProps<T>) {
+export default function OctoForm<T>({ defaultValues, schema, onSubmit, children }: FutureFormProps<T>) {
   type InferredType = yup.InferType<typeof schema>;
 
   const {
@@ -49,9 +49,9 @@ export default function MuyForm<T>({ defaultValues, schema, onSubmit, children }
   }
 
   return <form onSubmit={handleSubmit(onSubmit)}>
-    <MuyFormContext.Provider value={renderProps}>
+    <OctoFormContext.Provider value={renderProps}>
       {children}
-    </MuyFormContext.Provider>
+    </OctoFormContext.Provider>
   </form>;
 };
 

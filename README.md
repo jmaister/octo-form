@@ -131,6 +131,6 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
 # TODO
 
-- Logo on README.md
-- Example of usage
-- Rename GitHub project to octo-form
+- Form enable/disable
+- Provide isSubmitting, isValid, isDirty flags
+- 

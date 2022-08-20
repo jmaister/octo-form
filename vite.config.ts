@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    peerDepsExternal(),
     react(),
     dts({
       insertTypesEntry: true,
@@ -17,14 +19,6 @@ export default defineConfig({
       fileName: (format) => `octo-form.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'styled-components'],
-      output: {
-          globals: {
-              'react': 'React',
-              'react-dom': 'ReactDOM',
-              'styled-components': 'styled',
-          },
-      },
-  },
+    },
   }
 })

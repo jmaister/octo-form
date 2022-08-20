@@ -133,4 +133,8 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
 - Form enable/disable
 - Provide isSubmitting, isValid, isDirty flags
-- 
+- Allow to set Date locale for import esLocale from 'date-fns/locale/es';
+
+
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",

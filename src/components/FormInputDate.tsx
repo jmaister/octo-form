@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 
 export const FormInputDate = ({ name, label } : FormInputProps) => {
-  const {control, schema} = useContext(OctoFormContext);
+  const {control, schema, editable} = useContext(OctoFormContext);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -20,6 +20,7 @@ export const FormInputDate = ({ name, label } : FormInputProps) => {
             render={({ field }) =>
                 <DatePicker
                     label={label}
+                    disabled={!editable}
                     renderInput={(params) => 
                     <TextField 
                       {...params} 

@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 
 export const FormInputText = ({ name, label }: FormInputProps) => {
-  const {control, schema} = useContext(OctoFormContext);
+  const {control, schema, editable} = useContext(OctoFormContext);
 
     return (
       <Controller
@@ -27,6 +27,7 @@ export const FormInputText = ({ name, label }: FormInputProps) => {
             label={label}
             variant="outlined"
             required={isRequired(schema, name)}
+            disabled={!editable}
           />
         )}
       />

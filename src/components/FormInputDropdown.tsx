@@ -13,7 +13,7 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 export const FormInputDropdown= ({name, label, options}: FormInputPropsWithOptions) => {
-  const {control, schema} = useContext(OctoFormContext);
+  const {control, schema, editable} = useContext(OctoFormContext);
 
   const generateSelectOptions = () => {
     return options.map((option) => {
@@ -42,6 +42,7 @@ export const FormInputDropdown= ({name, label, options}: FormInputPropsWithOptio
                 value={value}
                 label={label}
                 required={isRequired(schema, name)}
+                disabled={!editable}
                 >
             {generateSelectOptions()}
             </Select>

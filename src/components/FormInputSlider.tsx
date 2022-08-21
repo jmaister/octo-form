@@ -11,7 +11,7 @@ import { FormInputProps } from "./FormInputProps";
 
 
 export const FormInputSlider = ({ name, label }: FormInputProps) => {
-  const {control, schema, watch} = useContext(OctoFormContext);
+  const {control, schema, watch, editable} = useContext(OctoFormContext);
 
   const min = findParamNumber(name, schema, "min", "min");
   const max = findParamNumber(name, schema, "max", "max");
@@ -34,6 +34,7 @@ export const FormInputSlider = ({ name, label }: FormInputProps) => {
           min={min}
           max={max}
           step={step}
+          disabled={!editable}
         />
       </Stack>
     )}

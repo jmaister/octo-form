@@ -17,6 +17,7 @@ export interface FormRenderContext<T> {
   control: Control;
   schema: yup.AnyObjectSchema;
   watch: UseFormWatch<T>;
+  editable: boolean;
 }
 
 export interface FutureFormProps<T> {
@@ -24,12 +25,15 @@ export interface FutureFormProps<T> {
   schema: yup.AnyObjectSchema;
   onSubmit: SubmitHandler<T>;
   children?: React.ReactNode;
+  editable?: boolean;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export default function OctoForm<T>({ defaultValues, schema, onSubmit, children }: FutureFormProps<T>) {
+export default function OctoForm<T>({ defaultValues, schema, onSubmit, children, editable }: FutureFormProps<T>) {
   type InferredType = yup.InferType<typeof schema>;
+
+  editable = editable ?? true;
 
   const {
     control,
@@ -46,6 +50,7 @@ export default function OctoForm<T>({ defaultValues, schema, onSubmit, children 
     control,
     schema,
     watch,
+    editable,
   }
 
   return <form onSubmit={handleSubmit(onSubmit)}>

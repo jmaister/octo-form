@@ -3,6 +3,7 @@
 import OctoForm from './OctoForm';
 
 // UI Components
+import { FormInputCheckbox } from './components/FormInputCheckbox';
 import { FormInputDate } from './components/FormInputDate';
 import { FormInputDateTime } from './components/FormInputDateTime';
 import { FormInputDropdown } from './components/FormInputDropdown';
@@ -17,6 +18,7 @@ import {FormInputProps, FormInputPropsWithOptions, OptionLabel} from './componen
 export {
     OctoForm,
 
+    FormInputCheckbox,
     FormInputDate,
     FormInputDateTime,
     FormInputDropdown,

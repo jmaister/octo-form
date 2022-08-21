@@ -15,7 +15,7 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 export const FormInputMultiCheckbox = ({name, label, options}: FormInputPropsWithOptions) => {
-  const {control, schema} = useContext(OctoFormContext);
+  const {control, schema, editable} = useContext(OctoFormContext);
 
   const generateSelectOptions = (value:any) => {
     return options.map((option) => {
@@ -49,6 +49,7 @@ export const FormInputMultiCheckbox = ({name, label, options}: FormInputPropsWit
           renderValue={(selected) => selected.join(', ')}
           fullWidth
           required={isRequired(schema, name)}
+          disabled={!editable}
         >
           {generateSelectOptions(value)}
         </Select>

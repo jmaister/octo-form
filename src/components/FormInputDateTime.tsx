@@ -9,28 +9,30 @@ import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 
 
-export const FormInputDateTime = ({ name, label } : FormInputProps) => {
+export const FormInputDateTime = ({ name, label, enabled }: FormInputProps) => {
 
-  const {control, schema, editable} = useContext(OctoFormContext);
+  const { control, schema, formEnabled } = useContext(OctoFormContext);
+
+  enabled = enabled ?? formEnabled ?? true;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Controller
-            name={name}
-            control={control}
-            render={({ field }) =>
-                <DateTimePicker
-                    label={label}
-                    disabled={!editable}
-                    renderInput={(params) => 
-                    <TextField 
-                      {...params} 
-                      required={isRequired(schema, name)}
-                      />}
-                    {...field}
-                    />
-                }
-            />
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) =>
+          <DateTimePicker
+            label={label}
+            disabled={!enabled}
+            renderInput={(params) =>
+              <TextField
+                {...params}
+                required={isRequired(schema, name)}
+              />}
+            {...field}
+          />
+        }
+      />
     </LocalizationProvider>
   );
 };

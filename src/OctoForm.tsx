@@ -1,5 +1,5 @@
 
-import { Control, SubmitHandler, useForm, UseFormWatch } from "react-hook-form";
+import { Control, FormState, SubmitHandler, useForm, UseFormWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
@@ -14,49 +14,51 @@ import { createContext, ReactNode } from "react";
 
 
 export interface FormRenderContext<T> {
-  control: Control;
-  schema: yup.AnyObjectSchema;
-  watch: UseFormWatch<T>;
-  editable: boolean;
+    control: Control;
+    schema: yup.AnyObjectSchema;
+    watch: UseFormWatch<T>;
+    formEnabled: boolean;
+    formState: FormState<T>;
 }
 
 export interface FutureFormProps<T> {
-  defaultValues: T;
-  schema: yup.AnyObjectSchema;
-  onSubmit: SubmitHandler<T>;
-  children?: React.ReactNode;
-  editable?: boolean;
+    defaultValues: T;
+    schema: yup.AnyObjectSchema;
+    onSubmit: SubmitHandler<T>;
+    children?: React.ReactNode;
+    formEnabled?: boolean;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export default function OctoForm<T>({ defaultValues, schema, onSubmit, children, editable }: FutureFormProps<T>) {
-  type InferredType = yup.InferType<typeof schema>;
+export default function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
+    type InferredType = yup.InferType<typeof schema>;
 
-  editable = editable ?? true;
+    formEnabled = formEnabled ?? true;
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm<InferredType>({
-    resolver: yupResolver(schema),
-    defaultValues: defaultValues
-  });
+    const {
+        control,
+        register,
+        handleSubmit,
+        formState,
+        watch,
+    } = useForm<InferredType>({
+        resolver: yupResolver(schema),
+        defaultValues: defaultValues
+    });
 
-  const renderProps : FormRenderContext<InferredType> = {
-    control,
-    schema,
-    watch,
-    editable,
-  }
+    const renderProps: FormRenderContext<InferredType> = {
+        control,
+        schema,
+        watch,
+        formEnabled,
+        formState
+    }
 
-  return <form onSubmit={handleSubmit(onSubmit)}>
-    <OctoFormContext.Provider value={renderProps}>
-      {children}
-    </OctoFormContext.Provider>
-  </form>;
+    return <form onSubmit={handleSubmit(onSubmit)}>
+        <OctoFormContext.Provider value={renderProps}>
+            {children}
+        </OctoFormContext.Provider>
+    </form>;
 };
 

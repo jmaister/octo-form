@@ -3,6 +3,7 @@ export interface FormInputProps {
     name: string;
     label: string;
     enabled?: boolean;
+    rows?: number;
 }
 
 export interface OptionLabel {

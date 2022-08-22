@@ -7,10 +7,12 @@ import { isRequired } from "../utils";
 import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 
-export const FormInputText = ({ name, label, enabled }: FormInputProps) => {
+export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) => {
     const { control, schema, formEnabled } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
+    const textRows = rows ?? 1;
+
     return (
         <Controller
             name={name}
@@ -29,6 +31,8 @@ export const FormInputText = ({ name, label, enabled }: FormInputProps) => {
                     variant="outlined"
                     required={isRequired(schema, name)}
                     disabled={!enabled}
+                    rows={textRows}
+                    multiline={textRows > 1}
                 />
             )}
         />

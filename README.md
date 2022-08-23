@@ -131,7 +131,5 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
 # TODO
 
-- Provide isSubmitting, isValid, isDirty flags
-- If isSubmitting, disable form inputs
 - Allow to set Date locale for import esLocale from 'date-fns/locale/es';
 - File component

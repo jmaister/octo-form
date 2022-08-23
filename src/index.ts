@@ -1,6 +1,7 @@
 
 // Main Form component
 export {default as OctoForm, OctoFormContext } from './OctoForm';
+export type {FormRenderContext } from './OctoForm';
 
 // UI Components
 export { FormInputCheckbox } from './components/FormInputCheckbox';

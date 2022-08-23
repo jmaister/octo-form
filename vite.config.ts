@@ -19,6 +19,7 @@ export default defineConfig({
       fileName: (format) => `octo-form.${format}.js`,
     },
     rollupOptions: {
+      external: ["@emotion/react", "@emotion/styled"]
     },
   }
 })

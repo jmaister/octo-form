@@ -1,9 +1,9 @@
 
-import { Control, FormState, SubmitHandler, useForm, UseFormWatch } from "react-hook-form";
+import { Control, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { createContext, ReactNode } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -15,6 +15,9 @@ import { createContext, ReactNode } from "react";
 
 export interface FormRenderContext<T> {
     control: Control;
+    register: UseFormRegister<T>;
+    setValue: UseFormSetValue<T>;
+    getValues: UseFormGetValues<T>;
     schema: yup.AnyObjectSchema;
     watch: UseFormWatch<T>;
     formEnabled: boolean;
@@ -34,24 +37,32 @@ export const OctoFormContext = createContext({} as FormRenderContext<any>);
 export default function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
-    formEnabled = formEnabled ?? true;
-
     const {
         control,
         register,
         handleSubmit,
         formState,
         watch,
+        setValue,
+        getValues,
     } = useForm<InferredType>({
         resolver: yupResolver(schema),
         defaultValues: defaultValues
     });
 
+    const [isFormEnabled, setFormEnabled] = useState<boolean>(formEnabled ?? true);
+    useEffect(() => {
+        setFormEnabled((formEnabled ?? true) && !formState.isSubmitting);
+    }, [formState.isSubmitting, formEnabled]);
+
     const renderProps: FormRenderContext<InferredType> = {
         control,
+        register,
+        setValue,
+        getValues,
         schema,
         watch,
-        formEnabled,
+        formEnabled: isFormEnabled,
         formState
     }
 

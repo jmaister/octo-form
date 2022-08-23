@@ -21,27 +21,31 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@mui/material": "5.x",
     "react": "18.x",
-    "react-dom": "18.x"
+    "react-dom": "18.x",
+    "@mui/material": "5.x",
+    "@mui/x-date-pickers": "5.x",
+    "@emotion/react": "11.x",
+    "@emotion/styled": "11.x"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.15.0",
     "@hookform/resolvers": "^2.9.7",
-    "@mui/icons-material": "5.8.4",
-    "@mui/x-date-pickers": "^5.0.0-beta.6",
     "date-fns": "^2.29.2",
     "react-hook-form": "^7.34.2",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@mui/material": "5.10.1",
+    "@mui/material": "5.10.2",
+    "@mui/x-date-pickers": "5.0.0-beta.6",
+    "@emotion/react": "11.x",
+    "@emotion/styled": "11.x",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@vitejs/plugin-react": "2.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rollup-plugin-peer-deps-external": "2.2.4",
     "sass": "1.54.5",
     "typescript": "4.7.4",
     "vite": "3.0.9",

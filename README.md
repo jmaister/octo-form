@@ -80,37 +80,14 @@ const onSubmit: SubmitHandler<SampleFormType> = (data) => {
     <Stack spacing={2}>
 
       <FormInputText name="example" label="Example" />
-
       <FormInputText name="exampleRequired" label="Example required" />
-
-      <FormInputDropdown
-        name="iceCreamType"
-        label="Ice Cream Type"
-        options={iceCreamOptions}
-      />
-
+      <FormInputDropdown name="iceCreamType" label="Ice Cream Type" options={iceCreamOptions} />
       <FormInputText name="age" label="Age" />
-
-      <FormInputDate
-        name="todaysDate"
-        label="Today's date"
-      />
-
-      <FormInputDateTime
-        name="todaysDateAndTime"
-        label="Today's date and time"
-      />
-
-      <FormInputMultiCheckbox
-        name="days"
-        label="Days"
-        options={dayOptions}
-      />
-
-      <FormInputSlider
-        name="volume"
-        label="Volume"
-      />
+      <FormInputDate name="todaysDate" label="Today's date" />
+      <FormInputDateTime name="todaysDateAndTime" label="Today's date and time" />
+      <FormInputMultiCheckbox name="days" label="Days" options={dayOptions} />
+      <FormInputSlider name="volume" label="Volume" />
+      <FormInputCheckbox name="isVegan" label="Vegan" />
 
       <Stack direction="row">
         <Button

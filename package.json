@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "type": "module",
   "files": [
@@ -21,12 +21,12 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "react": "18.x",
-    "react-dom": "18.x",
-    "@mui/material": "5.x",
-    "@mui/x-date-pickers": "5.x",
-    "@emotion/react": "11.x",
-    "@emotion/styled": "11.x"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@mui/material": "^5.10.2",
+    "@mui/x-date-pickers": "^5.0.0-beta.6",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.15.0",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "@mui/material": "5.10.2",
     "@mui/x-date-pickers": "5.0.0-beta.6",
-    "@emotion/react": "11.x",
-    "@emotion/styled": "11.x",
+    "@emotion/react": "11.10.0",
+    "@emotion/styled": "11.10.0",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@vitejs/plugin-react": "2.0.1",

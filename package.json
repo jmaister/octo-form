@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "type": "module",
   "files": [
@@ -27,13 +27,13 @@
     "@mui/x-date-pickers": "^5.0.0-beta.7",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@date-io/date-fns": "^2.15.0"
+    "@date-io/date-fns": "^2.15.0",
+    "yup": "^0.32.11"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.7",
     "date-fns": "^2.29.2",
-    "react-hook-form": "^7.34.2",
-    "yup": "^0.32.11"
+    "react-hook-form": "^7.34.2"
   },
   "devDependencies": {
     "react": "18.2.0",
@@ -43,6 +43,7 @@
     "@emotion/react": "11.10.0",
     "@emotion/styled": "11.10.0",
     "@date-io/date-fns": "2.15.0",
+    "yup": "0.32.11",
 
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",

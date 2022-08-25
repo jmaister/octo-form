@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@mui/material": "5.10.2",
-    "@mui/x-date-pickers": "5.0.0-beta.6",
+    "@mui/x-date-pickers": "5.0.0-beta.7",
     "@emotion/react": "11.10.0",
     "@emotion/styled": "11.10.0",
     "@types/react": "18.0.17",

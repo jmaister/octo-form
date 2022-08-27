@@ -1,6 +1,6 @@
 
 // Main Form component
-export {default as OctoForm, OctoFormContext } from './OctoForm';
+export {OctoForm, OctoFormContext } from './OctoForm';
 export type {FormRenderContext } from './OctoForm';
 
 // UI Components

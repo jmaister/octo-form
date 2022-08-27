@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
+// https://vitejs.dev/guide/build.html#library-mode
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -13,13 +15,15 @@ export default defineConfig({
     })
   ],
   build: {
+    target: 'esnext',
+    minify: false,
     lib: {
       entry: 'src/index.ts',
-      name: 'OctoForms',
-      fileName: (format) => `octo-form.${format}.js`,
+      name: 'OctoForm',
+      fileName: (format) => `index.${format}.js`,
+      // fileName: 'index'
     },
     rollupOptions: {
-      external: ["@emotion/react", "@emotion/styled"]
     },
   }
 })

@@ -1,41 +1,55 @@
 {
   "name": "octo-form",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmaister/octo-form/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmaister/octo-form.git"
+  },
+  "keywords": [
+    "form",
+    "react",
+    "react-form",
+    "react-hook-form",
+    "material",
+    "material-ui",
+    "yup"
+  ],
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/octo-form.umd.js",
-  "module": "./dist/octo-form.es.js",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/octo-form.es.js",
-      "require": "./dist/octo-form.umd.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
     }
   },
-  "types": "./dist/index.d.ts",
+  "directories": {
+    "dist": "dist"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@mui/material": "^5.10.2",
-    "@mui/x-date-pickers": "^5.0.0-beta.7",
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
-    "@date-io/date-fns": "^2.15.0",
-    "yup": "^0.32.11"
+    "react": "18.x",
+    "react-dom": "18.x",
+    "@mui/material": "5.x",
+    "@mui/x-date-pickers": "5.x",
+    "@emotion/react": "11.x",
+    "@emotion/styled": "11.x",
+    "@date-io/date-fns": "2.x",
+    "yup": "0.32.x"
   },
   "dependencies": {
-    "@hookform/resolvers": "^2.9.7",
-    "date-fns": "^2.29.2",
-    "react-hook-form": "^7.34.2"
-  },
-  "devDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "@mui/material": "5.10.2",
@@ -44,7 +58,11 @@
     "@emotion/styled": "11.10.0",
     "@date-io/date-fns": "2.15.0",
     "yup": "0.32.11",
-
+    "@hookform/resolvers": "^2.9.7",
+    "date-fns": "^2.29.2",
+    "react-hook-form": "^7.34.2"
+  },
+  "devDependencies": {
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@vitejs/plugin-react": "2.0.1",

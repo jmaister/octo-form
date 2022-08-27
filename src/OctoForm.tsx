@@ -13,6 +13,9 @@ import { createContext, useEffect, useState } from "react";
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
 
+// For getting build configuration well done
+// https://github.com/viclafouch/mui-tel-input/tree/505101b585476ae0a011acefbafe0776b07985c3
+
 export interface FormRenderContext<T> {
     control: Control;
     register: UseFormRegister<T>;
@@ -34,7 +37,7 @@ export interface FutureFormProps<T> {
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export default function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
+export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
     const {

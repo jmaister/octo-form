@@ -1,8 +1,8 @@
 
-import TextField from "@mui/material/TextField";
+import {TextField} from "@mui/material";
 
 import { Controller } from "react-hook-form";
-import { FormInputProps } from "./FormInputProps";
+import type { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";

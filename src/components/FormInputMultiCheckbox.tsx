@@ -41,7 +41,7 @@ export const FormInputMultiCheckbox = ({ name, label, enabled, options }: FormIn
             fieldState: { error },
         }) => (
             <FormControl fullWidth>
-                <InputLabel id={labelId}>{label}</InputLabel>
+                <InputLabel id={labelId}>{label}{isRequired(schema, name) ? " * " : null}</InputLabel>
                 <Select
                     labelId={labelId}
                     multiple

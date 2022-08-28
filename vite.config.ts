@@ -15,13 +15,12 @@ export default defineConfig({
     })
   ],
   build: {
-    target: 'esnext',
+    target: 'es6',
     minify: false,
     lib: {
       entry: 'src/index.ts',
       name: 'OctoForm',
       fileName: (format) => `index.${format}.js`,
-      // fileName: 'index'
     },
     rollupOptions: {
     },

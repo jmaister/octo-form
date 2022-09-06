@@ -1,9 +1,10 @@
 
-import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { createContext, useEffect, useState } from "react";
+import { findLocaleOrDefault } from "./locales";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -36,11 +37,12 @@ export interface FutureFormProps<T extends FieldValues> {
     onSubmit: SubmitHandler<T>;
     children?: React.ReactNode;
     formEnabled?: boolean;
+    locale?: string;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
+export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, children, formEnabled, locale }: FutureFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
     const {

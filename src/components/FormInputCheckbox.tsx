@@ -19,7 +19,7 @@ export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
                 fieldState: { error },
             }) => (
                 <FormControlLabel
-                    control={<Checkbox value={value} onChange={onChange} />}
+                    control={<Checkbox checked={value} onChange={onChange} />}
                     disabled={!enabled}
                     label={label} />
             )}

@@ -1,5 +1,5 @@
 
-import { Control, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
@@ -16,7 +16,7 @@ import { createContext, useEffect, useState } from "react";
 // For getting build configuration well done
 // https://github.com/viclafouch/mui-tel-input/tree/505101b585476ae0a011acefbafe0776b07985c3
 
-export interface FormRenderContext<T> {
+export interface FormRenderContext<T extends FieldValues> {
     control: Control;
     register: UseFormRegister<T>;
     setValue: UseFormSetValue<T>;
@@ -27,7 +27,7 @@ export interface FormRenderContext<T> {
     formState: FormState<T>;
 }
 
-export interface FutureFormProps<T> {
+export interface FutureFormProps<T extends FieldValues> {
     defaultValues: T;
     schema: yup.AnyObjectSchema;
     onSubmit: SubmitHandler<T>;
@@ -37,7 +37,7 @@ export interface FutureFormProps<T> {
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
+export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
     const {

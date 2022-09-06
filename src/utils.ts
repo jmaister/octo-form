@@ -10,13 +10,24 @@ export function findTest(fieldName: string, schema: yup.AnyObjectSchema, testNam
     if (fieldName.indexOf(".") > 0) {
         const parts = fieldName.split(".");
         const arrayField = desc.fields[parts[0]] as SchemaInnerTypeDescription;
+        if (arrayField == null) {
+            console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+            return;
+        }
         const innerType = arrayField.innerType as SchemaObjectDescription;
         const field = innerType.fields[parts[2]] as SchemaDescription;
+        if (field == null) {
+            console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+            return;
+        }
         return field.tests.find((tt: any) => tt.name === testName);
     }
 
     const field = desc.fields[fieldName] as SchemaDescription;
-
+    if (field == null) {
+        console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+        return;
+    }
     return field.tests.find((tt: any) => tt.name === testName);
 }
 

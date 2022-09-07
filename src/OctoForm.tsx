@@ -32,10 +32,12 @@ export interface FormRenderContext<T extends FieldValues> {
     reset: UseFormReset<T>;
 }
 
+export type OnSubmitFnType<T extends FieldValues> = (data: T, context: FormRenderContext<T>) => void;
+
 export interface FutureFormProps<T extends FieldValues> {
     defaultValues: T;
     schema: yup.AnyObjectSchema;
-    onSubmit: SubmitHandler<T>;
+    onSubmit: OnSubmitFnType<T>;
     children?: React.ReactNode;
     formEnabled?: boolean;
     locale?: string;
@@ -98,7 +100,12 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         return <div key={key}>{key} {errors[key]?.message}</div>;
     });
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
+    // Wrap the onSubmit function to send the context
+    const onSubmitHandler: SubmitHandler<InferredType> = (data) => {
+        return onSubmit(data, renderProps);
+    };
+
+    return <form onSubmit={handleSubmit(onSubmitHandler)}>
         <OctoFormContext.Provider value={renderProps}>
             {children}
             {hasErrors ? <div>

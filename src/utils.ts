@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { SchemaDescription, SchemaFieldDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
+import { SchemaDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
 import { ExtraParams } from "yup/lib/types";
 
 

@@ -1,9 +1,9 @@
+import { createContext, useEffect, useState } from "react";
 
-import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger } from "react-hook-form";
+import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { createContext, useEffect, useState } from "react";
 import { findLocaleOrDefault } from "./locales";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
@@ -29,6 +29,7 @@ export interface FormRenderContext<T extends FieldValues> {
     isSubmitAllowed: boolean;
     locale: Locale;
     trigger: UseFormTrigger<T>
+    reset: UseFormReset<T>;
 }
 
 export interface FutureFormProps<T extends FieldValues> {
@@ -54,6 +55,7 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         setValue,
         getValues,
         trigger,
+        reset,
     } = useForm<InferredType>({
         resolver: yupResolver(schema),
         defaultValues: defaultValues,
@@ -88,6 +90,7 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         isSubmitAllowed,
         locale: findLocaleOrDefault(locale),
         trigger,
+        reset,
     }
 
     const hasErrors = Object.keys(errors).length > 0;

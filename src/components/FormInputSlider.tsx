@@ -1,8 +1,8 @@
+import { useContext } from "react";
 
 import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
-import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
 import { OctoFormContext } from "../OctoForm";

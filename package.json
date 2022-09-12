@@ -52,7 +52,7 @@
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "@mui/material": "5.10.2",
+    "@mui/material": "5.10.5",
     "@mui/x-date-pickers": "5.0.0-beta.7",
     "@emotion/react": "11.10.0",
     "@emotion/styled": "11.10.0",

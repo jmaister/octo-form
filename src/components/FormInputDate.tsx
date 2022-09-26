@@ -1,3 +1,4 @@
+import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -6,16 +7,15 @@ import TextField from "@mui/material/TextField";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { OctoFormContext } from "../OctoForm";
-import { useContext } from "react";
 
 
 export const FormInputDate = ({ name, label, enabled } : FormInputProps) => {
-  const {control, schema, formEnabled} = useContext(OctoFormContext);
+  const {control, schema, formEnabled, locale} = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
         <Controller
             name={name}
             control={control}
@@ -23,9 +23,9 @@ export const FormInputDate = ({ name, label, enabled } : FormInputProps) => {
                 <DatePicker
                     label={label}
                     disabled={!enabled}
-                    renderInput={(params) => 
-                    <TextField 
-                      {...params} 
+                    renderInput={(params) =>
+                    <TextField
+                      {...params}
                       required={isRequired(schema, name)}
                       />}
                     {...field}

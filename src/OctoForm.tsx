@@ -1,9 +1,10 @@
+import { createContext, useEffect, useState } from "react";
 
-import { Control, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { createContext, useEffect, useState } from "react";
+import { findLocaleOrDefault } from "./locales";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -16,7 +17,7 @@ import { createContext, useEffect, useState } from "react";
 // For getting build configuration well done
 // https://github.com/viclafouch/mui-tel-input/tree/505101b585476ae0a011acefbafe0776b07985c3
 
-export interface FormRenderContext<T> {
+export interface FormRenderContext<T extends FieldValues> {
     control: Control;
     register: UseFormRegister<T>;
     setValue: UseFormSetValue<T>;
@@ -25,19 +26,26 @@ export interface FormRenderContext<T> {
     watch: UseFormWatch<T>;
     formEnabled: boolean;
     formState: FormState<T>;
+    isSubmitAllowed: boolean;
+    locale: Locale;
+    trigger: UseFormTrigger<T>
+    reset: UseFormReset<T>;
 }
 
-export interface FutureFormProps<T> {
+export type OnSubmitFnType<T extends FieldValues> = (data: T, context: FormRenderContext<T>) => void;
+
+export interface FutureFormProps<T extends FieldValues> {
     defaultValues: T;
     schema: yup.AnyObjectSchema;
-    onSubmit: SubmitHandler<T>;
+    onSubmit: OnSubmitFnType<T>;
     children?: React.ReactNode;
     formEnabled?: boolean;
+    locale?: string;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEnabled }: FutureFormProps<T>) {
+export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, children, formEnabled, locale }: FutureFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
     const {
@@ -48,15 +56,29 @@ export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEna
         watch,
         setValue,
         getValues,
+        trigger,
+        reset,
     } = useForm<InferredType>({
         resolver: yupResolver(schema),
-        defaultValues: defaultValues
+        defaultValues: defaultValues,
+        mode: "onChange",
     });
 
     const [isFormEnabled, setFormEnabled] = useState<boolean>(formEnabled ?? true);
     useEffect(() => {
         setFormEnabled((formEnabled ?? true) && !formState.isSubmitting);
     }, [formState.isSubmitting, formEnabled]);
+
+    const [isSubmitAllowed, setSubmitAllowed] = useState<boolean>(true);
+    useEffect(() => {
+        setSubmitAllowed(isFormEnabled && !formState.isSubmitting && formState.isDirty && formState.isValid);
+    } , [isFormEnabled, formState.isSubmitting, formState.isDirty, formState.isValid]);
+
+    const [errors, setErrors] = useState<FieldErrors>(formState.errors);
+    useEffect(() => {
+        setErrors(formState.errors);
+    } , [formState.errors]);
+
 
     const renderProps: FormRenderContext<InferredType> = {
         control,
@@ -66,12 +88,30 @@ export function OctoForm<T>({ defaultValues, schema, onSubmit, children, formEna
         schema,
         watch,
         formEnabled: isFormEnabled,
-        formState
+        formState,
+        isSubmitAllowed,
+        locale: findLocaleOrDefault(locale),
+        trigger,
+        reset,
     }
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
+    const hasErrors = Object.keys(errors).length > 0;
+    const errs = Object.keys(errors).map((key:any) => {
+        return <div key={key}>{key} {errors[key]?.message}</div>;
+    });
+
+    // Wrap the onSubmit function to send the context
+    const onSubmitHandler: SubmitHandler<InferredType> = (data) => {
+        return onSubmit(data, renderProps);
+    };
+
+    return <form onSubmit={handleSubmit(onSubmitHandler)}>
         <OctoFormContext.Provider value={renderProps}>
             {children}
+            {hasErrors ? <div>
+                <div>Errors:</div>
+                {errs}
+            </div> : null}
         </OctoFormContext.Provider>
     </form>;
 };

@@ -3,7 +3,8 @@ import { Controller } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
     const { control, schema, formEnabled } = useContext(OctoFormContext);
@@ -19,7 +20,7 @@ export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
                 fieldState: { error },
             }) => (
                 <FormControlLabel
-                    control={<Checkbox value={value} onChange={onChange} />}
+                    control={<Checkbox checked={value} onChange={onChange} />}
                     disabled={!enabled}
                     label={label} />
             )}

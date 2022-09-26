@@ -1,10 +1,9 @@
+import { useContext } from "react";
 
 import TextField from "@mui/material/TextField";
-
 import { Controller } from "react-hook-form";
 import type { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
-import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 
 export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) => {
@@ -22,7 +21,7 @@ export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) =>
                 fieldState: { error },
             }) => (
                 <TextField
-                    helperText={error ? error.message : null}
+                    helperText={error?.message ?? ""}
                     error={!!error}
                     onChange={onChange}
                     value={value}

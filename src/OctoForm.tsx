@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { findLocaleOrDefault } from "./locales";
+import { Locale } from "date-fns";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -40,7 +41,7 @@ export interface FutureFormProps<T extends FieldValues> {
     onSubmit: OnSubmitFnType<T>;
     children?: React.ReactNode;
     formEnabled?: boolean;
-    locale?: string;
+    locale?: Locale;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);

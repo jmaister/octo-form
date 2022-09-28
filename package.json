@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -18,19 +18,12 @@
     "material-ui",
     "yup"
   ],
-  "type": "module",
+  "type": "commonjs",
   "files": [
     "dist"
   ],
   "types": "./dist/index.d.ts",
   "main": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    }
-  },
   "directories": {
     "dist": "dist"
   },

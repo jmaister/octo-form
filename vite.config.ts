@@ -21,6 +21,7 @@ export default defineConfig({
       entry: 'src/index.ts',
       name: 'OctoForm',
       fileName: (format) => `index.${format}.js`,
+      formats: ['umd'],
     },
     rollupOptions: {
     },

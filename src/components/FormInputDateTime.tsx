@@ -11,12 +11,12 @@ import { OctoFormContext } from "../OctoForm";
 
 export const FormInputDateTime = ({ name, label, enabled }: FormInputProps) => {
 
-  const { control, schema, formEnabled } = useContext(OctoFormContext);
+  const { control, schema, formEnabled, locale } = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
       <Controller
         name={name}
         control={control}

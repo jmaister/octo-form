@@ -12,5 +12,8 @@ export { FormInputMultiCheckbox } from './components/FormInputMultiCheckbox';
 export { FormInputSlider } from './components/FormInputSlider';
 export { FormInputText } from './components/FormInputText';
 
+// Extra
+export { ErrorList } from './extra/ErrorList';
+
 // Other
 export type {FormInputProps, FormInputPropsWithOptions, OptionLabel} from './components/FormInputProps';

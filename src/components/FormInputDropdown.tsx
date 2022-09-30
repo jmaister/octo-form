@@ -29,6 +29,8 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
 
   const labelId = "genid-" + name;
 
+  const required = isRequired(schema, name);
+
   return <Controller
       control={control}
       name={name}
@@ -37,13 +39,13 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
         fieldState: { error },
      }) => (
         <FormControl fullWidth>
-            <InputLabel id={labelId}>{label}</InputLabel>
+            <InputLabel id={labelId} required={required}>{label}</InputLabel>
             <Select
                 labelId={labelId}
                 onChange={onChange}
                 value={value}
                 label={label}
-                required={isRequired(schema, name)}
+                required={required}
                 disabled={!enabled}
                 >
             {generateSelectOptions()}

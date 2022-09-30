@@ -108,8 +108,5 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
 # TODO
 
-- Allow to set Date locale for import esLocale from 'date-fns/locale/es';
 - File component
-- Select does not show required "*"
 - Create an ErrorList component
-  

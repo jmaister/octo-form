@@ -96,11 +96,6 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         reset,
     }
 
-    const hasErrors = Object.keys(errors).length > 0;
-    const errs = Object.keys(errors).map((key:any) => {
-        return <div key={key}>{key} {errors[key]?.message}</div>;
-    });
-
     // Wrap the onSubmit function to send the context
     const onSubmitHandler: SubmitHandler<InferredType> = (data) => {
         return onSubmit(data, renderProps);
@@ -109,10 +104,6 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
     return <form onSubmit={handleSubmit(onSubmitHandler)}>
         <OctoFormContext.Provider value={renderProps}>
             {children}
-            {hasErrors ? <div>
-                <div>Errors:</div>
-                {errs}
-            </div> : null}
         </OctoFormContext.Provider>
     </form>;
 };

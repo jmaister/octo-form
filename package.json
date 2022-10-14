@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -33,26 +33,26 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@date-io/date-fns": "2.x",
-    "@emotion/react": "11.x",
-    "@emotion/styled": "11.x",
-    "@mui/material": "5.x",
-    "@mui/x-date-pickers": "5.x",
-    "react": "18.x",
-    "react-dom": "18.x",
-    "yup": "0.32.x"
+    "@date-io/date-fns": "^2.16.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.9",
+    "@mui/x-date-pickers": "^5.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yup": "^0.32.11"
   },
   "dependencies": {
     "@date-io/date-fns": "2.16.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@hookform/resolvers": "2.9.8",
-    "@mui/material": "5.10.6",
-    "@mui/x-date-pickers": "5.0.3",
+    "@hookform/resolvers": "2.9.9",
+    "@mui/material": "5.10.9",
+    "@mui/x-date-pickers": "5.0.4",
     "date-fns": "2.29.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.36.1",
+    "react-hook-form": "7.37.0",
     "yup": "0.32.11"
   },
   "devDependencies": {
@@ -61,8 +61,8 @@
     "@vitejs/plugin-react": "2.1.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "sass": "1.55.0",
-    "typescript": "4.8.3",
-    "vite": "3.1.3",
-    "vite-plugin-dts": "1.5.0"
+    "typescript": "4.8.4",
+    "vite": "3.1.8",
+    "vite-plugin-dts": "1.6.6"
   }
 }

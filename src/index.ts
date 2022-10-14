@@ -14,6 +14,7 @@ export { FormInputText } from './components/FormInputText';
 
 // Extra
 export { ErrorList } from './extra/ErrorList';
+export { SubmitButton } from './extra/SubmitButton';
 
 // Other
 export type {FormInputProps, FormInputPropsWithOptions, OptionLabel} from './components/FormInputProps';

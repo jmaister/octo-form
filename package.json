@@ -30,7 +30,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ci": "yarn install --frozen-lockfile"
   },
   "peerDependencies": {
     "@date-io/date-fns": "^2.16.0",

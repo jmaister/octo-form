@@ -31,7 +31,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "ci": "yarn install --frozen-lockfile"
+    "ci": "yarn install --frozen-lockfile",
+    "bump": "yarn version --patch --immediate && git push && git push --tags"
   },
   "peerDependencies": {
     "@date-io/date-fns": "^2.16.0",

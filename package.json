@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -39,8 +39,8 @@
     "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.9",
-    "@mui/x-date-pickers": "^5.0.4",
+    "@mui/material": "^5.10.11",
+    "@mui/x-date-pickers": "^5.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yup": "^0.32.11"
@@ -49,13 +49,13 @@
     "@date-io/date-fns": "2.16.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@hookform/resolvers": "2.9.9",
-    "@mui/material": "5.10.9",
-    "@mui/x-date-pickers": "5.0.4",
+    "@hookform/resolvers": "2.9.10",
+    "@mui/material": "5.10.11",
+    "@mui/x-date-pickers": "5.0.5",
     "date-fns": "2.29.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.37.0",
+    "react-hook-form": "7.38.0",
     "yup": "0.32.11"
   },
   "devDependencies": {

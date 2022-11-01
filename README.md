@@ -109,3 +109,5 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 # TODO
 
 - File component
+- Number component: auto wity yup.number(), decimals?
+- Add autocalculated field -> textfield with calculated value, watch/useWatch

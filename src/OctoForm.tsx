@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-import { Control, FieldValues, FieldErrors, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset } from "react-hook-form";
+import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset, useWatch, EventType } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
@@ -31,22 +31,32 @@ export interface FormRenderContext<T extends FieldValues> {
     locale: Locale;
     trigger: UseFormTrigger<T>
     reset: UseFormReset<T>;
+    size: Size;
 }
 
 export type OnSubmitFnType<T extends FieldValues> = (data: T, context: FormRenderContext<T>) => void;
+export type OnChangeFnType<T extends FieldValues> = (
+    data: T,
+    context: FormRenderContext<T>,
+    field:string|undefined,
+    type:string|undefined) => void;
 
-export interface FutureFormProps<T extends FieldValues> {
+export type Size = "small" | "medium" | undefined;
+
+export interface OctoFormProps<T extends FieldValues> {
     defaultValues: T;
     schema: yup.AnyObjectSchema;
     onSubmit: OnSubmitFnType<T>;
+    onChange?: OnChangeFnType<T>;
     children?: React.ReactNode;
     formEnabled?: boolean;
     locale?: Locale;
+    size?: Size;
 }
 
 export const OctoFormContext = createContext({} as FormRenderContext<any>);
 
-export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, children, formEnabled, locale }: FutureFormProps<T>) {
+export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, onChange, children, formEnabled, locale, size }: OctoFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
     const {
@@ -75,12 +85,6 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         setSubmitAllowed(isFormEnabled && !formState.isSubmitting && formState.isDirty && formState.isValid);
     } , [isFormEnabled, formState.isSubmitting, formState.isDirty, formState.isValid]);
 
-    const [errors, setErrors] = useState<FieldErrors>(formState.errors);
-    useEffect(() => {
-        setErrors(formState.errors);
-    } , [formState.errors]);
-
-
     const renderProps: FormRenderContext<InferredType> = {
         control,
         register,
@@ -94,7 +98,15 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         locale: findLocaleOrDefault(locale),
         trigger,
         reset,
+        size,
     }
+
+    useEffect(() => {
+        const { unsubscribe } = watch((data: T, { name, type }) => {
+            onChange?.(data, renderProps, name?.toString(), type?.toString());
+        });
+        return () => unsubscribe();
+    }, [watch]);
 
     // Wrap the onSubmit function to send the context
     const onSubmitHandler: SubmitHandler<InferredType> = (data) => {

@@ -7,7 +7,7 @@ import { isRequired } from "../utils";
 import { OctoFormContext } from "../OctoForm";
 
 export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) => {
-    const { control, schema, formEnabled } = useContext(OctoFormContext);
+    const { control, schema, formEnabled, size } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
     const textRows = rows ?? 1;
@@ -32,6 +32,7 @@ export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) =>
                     disabled={!enabled}
                     rows={textRows}
                     multiline={textRows > 1}
+                    size={size}
                 />
             )}
         />

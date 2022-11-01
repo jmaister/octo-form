@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -13,11 +13,11 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 export const FormInputDropdown= ({name, label, enabled, options}: FormInputPropsWithOptions) => {
-  const {control, schema, formEnabled} = useContext(OctoFormContext);
+  const {control, schema, formEnabled, size } = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
 
-  const generateSelectOptions = () => {
+  const renderedOptions = useMemo(() => {
     return options.map((option) => {
       return (
         <MenuItem key={option.value} value={option.value}>
@@ -25,7 +25,7 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
         </MenuItem>
       );
     });
-  };
+  }, [options]);
 
   const labelId = "genid-" + name;
 
@@ -47,8 +47,9 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
                 label={label}
                 required={required}
                 disabled={!enabled}
+                size={size}
                 >
-            {generateSelectOptions()}
+                {renderedOptions}
             </Select>
             <FormHelperText hidden={!error}>{error?.message}</FormHelperText>
         </FormControl>

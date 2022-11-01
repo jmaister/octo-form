@@ -7,7 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
-    const { control, schema, formEnabled } = useContext(OctoFormContext);
+    const { control, schema, formEnabled, size } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
 
@@ -20,7 +20,7 @@ export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
                 fieldState: { error },
             }) => (
                 <FormControlLabel
-                    control={<Checkbox checked={value} onChange={onChange} />}
+                    control={<Checkbox checked={value} onChange={onChange} size={size} />}
                     disabled={!enabled}
                     label={label} />
             )}

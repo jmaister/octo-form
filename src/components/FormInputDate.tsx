@@ -10,7 +10,7 @@ import { OctoFormContext } from "../OctoForm";
 
 
 export const FormInputDate = ({ name, label, enabled } : FormInputProps) => {
-  const {control, schema, formEnabled, locale} = useContext(OctoFormContext);
+  const {control, schema, formEnabled, locale, size} = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
 
@@ -27,6 +27,7 @@ export const FormInputDate = ({ name, label, enabled } : FormInputProps) => {
                     <TextField
                       {...params}
                       required={isRequired(schema, name)}
+                      size={size}
                       />}
                     {...field}
                     />

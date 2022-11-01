@@ -37,21 +37,21 @@
   },
   "peerDependencies": {
     "@date-io/date-fns": "^2.16.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.11",
-    "@mui/x-date-pickers": "^5.0.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.12",
+    "@mui/x-date-pickers": "^5.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yup": "^0.32.11"
   },
   "dependencies": {
     "@date-io/date-fns": "2.16.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
     "@hookform/resolvers": "2.9.10",
-    "@mui/material": "5.10.11",
-    "@mui/x-date-pickers": "5.0.5",
+    "@mui/material": "5.10.12",
+    "@mui/x-date-pickers": "5.0.6",
     "date-fns": "2.29.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -59,13 +59,13 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
-    "@types/react": "18.0.21",
-    "@types/react-dom": "18.0.6",
-    "@vitejs/plugin-react": "2.1.0",
+    "@types/react": "18.0.24",
+    "@types/react-dom": "18.0.8",
+    "@vitejs/plugin-react": "2.2.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "sass": "1.55.0",
     "typescript": "4.8.4",
-    "vite": "3.1.8",
+    "vite": "3.2.2",
     "vite-plugin-dts": "1.6.6"
   }
 }

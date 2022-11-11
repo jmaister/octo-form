@@ -111,3 +111,5 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 - File component
 - Number component: auto wity yup.number(), decimals?
 - Add autocalculated field -> textfield with calculated value, watch/useWatch
+- Table selection: https://mui.com/material-ui/react-table/#sorting-amp-selecting
+- Edit data type T and submit data type S can be different, i.e. Subscription - SubscriptionData

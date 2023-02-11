@@ -33,7 +33,9 @@
     "preview": "vite preview",
     "ci": "yarn install --frozen-lockfile",
     "bump": "yarn version --patch --immediate && git push && git push --tags",
-    "test": "echo test"
+    "test": "echo test",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "@date-io/date-fns": "^2.16.0",
@@ -59,9 +61,18 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.1",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "@vitejs/plugin-react": "2.2.0",
+    "babel-loader": "^8.3.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "sass": "1.55.0",
     "typescript": "4.8.4",

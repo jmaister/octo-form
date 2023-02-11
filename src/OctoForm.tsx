@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 
-import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset, useWatch, EventType } from "react-hook-form";
+import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { findLocaleOrDefault } from "./locales";
 import { Locale } from "date-fns";
+import { Size } from "./utils";
 
 // https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 
@@ -41,7 +42,6 @@ export type OnChangeFnType<T extends FieldValues> = (
     field:string|undefined,
     type:string|undefined) => void;
 
-export type Size = "small" | "medium" | undefined;
 
 export interface OctoFormProps<T extends FieldValues> {
     defaultValues: T;

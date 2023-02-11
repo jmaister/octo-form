@@ -6,11 +6,12 @@ import type { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { OctoFormContext } from "../OctoForm";
 
-export const FormInputText = ({ name, label, enabled, rows }: FormInputProps) => {
-    const { control, schema, formEnabled, size } = useContext(OctoFormContext);
+export const FormInputText = ({ name, label, enabled, rows, size }: FormInputProps) => {
+    const { control, schema, formEnabled, ...ctx } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
     const textRows = rows ?? 1;
+    size = size ?? ctx.size;
 
     return (
         <Controller

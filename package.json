@@ -79,7 +79,7 @@
     "sass": "1.55.0",
     "typescript": "4.8.4",
     "vite": "3.2.2",
-    "vite-plugin-dts": "1.6.6"
+    "vite-plugin-dts": "1.7.2"
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/jmaister/octo-form#readme",

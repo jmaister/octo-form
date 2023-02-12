@@ -9,6 +9,8 @@ OctoForm is a wrapper that combines Material-UI + react-hook-form + yup using Re
 
 [Example repository https://github.com/jmaister/octo-form-example]([https://](https://github.com/jmaister/octo-form-example))
 
+Demo on Chromatic: https://63e902d86b5464295dc7a3c4-mufiukyqon.chromatic.com/?path=/story/octoform--full-example
+
 # Screenshot
 
 ![Screenshot](docs/screenshot.png)
@@ -109,6 +111,7 @@ Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
 # TODO
 
 - File component
+- Password component
 - Number component: auto wity yup.number(), decimals?
 - Add autocalculated field -> textfield with calculated value, watch/useWatch
 - Table selection: https://mui.com/material-ui/react-table/#sorting-amp-selecting

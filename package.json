@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -35,30 +35,31 @@
     "bump": "yarn version --patch --immediate && git push && git push --tags",
     "test": "echo test",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=AAAAAAAA"
   },
   "peerDependencies": {
     "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.12",
-    "@mui/x-date-pickers": "^5.0.6",
+    "@mui/material": "^5.11.8",
+    "@mui/x-date-pickers": "^5.0.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "yup": "^0.32.11"
+    "yup": "^1.0.0"
   },
   "dependencies": {
     "@date-io/date-fns": "2.16.0",
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
-    "@hookform/resolvers": "2.9.10",
-    "@mui/material": "5.10.12",
-    "@mui/x-date-pickers": "5.0.6",
+    "@hookform/resolvers": "2.9.11",
+    "@mui/material": "5.11.8",
+    "@mui/x-date-pickers": "5.0.18",
     "date-fns": "2.29.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.38.0",
-    "yup": "0.32.11"
+    "react-hook-form": "7.43.1",
+    "yup": "1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -73,10 +74,14 @@
     "@types/react-dom": "18.0.8",
     "@vitejs/plugin-react": "2.2.0",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.17.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "sass": "1.55.0",
     "typescript": "4.8.4",
     "vite": "3.2.2",
     "vite-plugin-dts": "1.6.6"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/jmaister/octo-form#readme",
+  "_id": "octo-form@1.0.24"
 }

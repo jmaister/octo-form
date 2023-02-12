@@ -11,9 +11,9 @@ export default {
     component: FormInputSlider,
 } as ComponentMeta<typeof FormInputSlider>;
 
-export const Slider: ComponentStory<typeof FormInputSlider> = (args) => {
+export const Integer: ComponentStory<typeof FormInputSlider> = (args) => {
     const schema = yup.object({
-        volume: yup.number().min(0).max(10),
+        volume: yup.number().integer().min(0).max(10),
     });
     const defaultValues = {
         volume: 5,
@@ -23,7 +23,24 @@ export const Slider: ComponentStory<typeof FormInputSlider> = (args) => {
         <FormInputSlider {...args} />
     </OctoForm>;
 };
-Slider.args = {
+Integer.args = {
     name: "volume",
     label: "Volume"
+};
+
+export const Float: ComponentStory<typeof FormInputSlider> = (args) => {
+    const schema = yup.object({
+        temperature: yup.number().min(0).max(100),
+    });
+    const defaultValues = {
+        volume: 36.6,
+    };
+
+    return <OctoForm schema={schema} onSubmit={() => {}} defaultValues={defaultValues}>
+        <FormInputSlider {...args} />
+    </OctoForm>;
+};
+Float.args = {
+    name: "temperature",
+    label: "Temperature"
 };

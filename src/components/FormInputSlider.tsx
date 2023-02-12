@@ -10,14 +10,15 @@ import { findParamNumber, findTest, isRequired } from "../utils";
 import { FormInputProps } from "./FormInputProps";
 
 
-export const FormInputSlider = ({ name, label, enabled }: FormInputProps) => {
-    const { control, schema, watch, formEnabled } = useContext(OctoFormContext);
+export const FormInputSlider = ({ name, label, enabled, size }: FormInputProps) => {
+    const { control, schema, watch, formEnabled, ...ctx } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
 
     const min = findParamNumber(name, schema, "min", "min");
     const max = findParamNumber(name, schema, "max", "max");
     const step = findTest(name, schema, "integer") ? 1 : 0.01;
+    size = size ?? ctx.size;
 
     return <Controller
         name={name}
@@ -37,6 +38,7 @@ export const FormInputSlider = ({ name, label, enabled }: FormInputProps) => {
                     max={max}
                     step={step}
                     disabled={!enabled}
+                    size={size}
                 />
             </Stack>
         )}

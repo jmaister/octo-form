@@ -6,10 +6,11 @@ import { OctoFormContext } from "../OctoForm";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-export const FormInputCheckbox = ({ name, label, enabled }: FormInputProps) => {
-    const { control, schema, formEnabled, size } = useContext(OctoFormContext);
+export const FormInputCheckbox = ({ name, label, enabled, size }: FormInputProps) => {
+    const { control, schema, formEnabled, ...ctx } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
+    size = size ?? ctx.size;
 
     return (
         <Controller

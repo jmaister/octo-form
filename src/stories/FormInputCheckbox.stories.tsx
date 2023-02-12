@@ -11,7 +11,7 @@ export default {
     component: FormInputCheckbox,
 } as ComponentMeta<typeof FormInputCheckbox>;
 
-export const Text: ComponentStory<typeof FormInputCheckbox> = (args) => {
+export const Checkbox: ComponentStory<typeof FormInputCheckbox> = (args) => {
     const schema = yup.object({
         acceptPolicy: yup.string().required(),
     });
@@ -23,7 +23,7 @@ export const Text: ComponentStory<typeof FormInputCheckbox> = (args) => {
         <FormInputCheckbox {...args} />
     </OctoForm>;
 };
-Text.args = {
+Checkbox.args = {
     name: "acceptPolicy",
     label: "Accept Policy",
 };

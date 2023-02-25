@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 
 import { useContext, useEffect, useState } from "react"
 import { OctoFormContext } from '../OctoForm';
@@ -18,12 +17,11 @@ export const SubmitButton = ({label, icon}: SubmitButtonProps) => {
 
     label = label ?? "Save";
 
-    return <Button
+    return <button
+        className="btn btn-primary"
         type="submit"
-        variant="contained"
         color="primary"
-        disabled={isButtonDisabled}
-        startIcon={icon}>
-        {label}
-    </Button>
+        disabled={isButtonDisabled}>
+        {icon} {label}
+    </button>
 }

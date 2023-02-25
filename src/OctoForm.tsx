@@ -8,10 +8,7 @@ import { findLocaleOrDefault } from "./locales";
 import { Locale } from "date-fns";
 import { Size } from "./utils";
 
-// https://blog.logrocket.com/using-material-ui-with-react-hook-form/
-
-// https://mui.com/material-ui/react-select/
-// https://mui.com/x/react-date-pickers/getting-started/
+import "bootstrap/dist/css/bootstrap.css";
 
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 

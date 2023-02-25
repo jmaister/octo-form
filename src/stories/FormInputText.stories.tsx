@@ -20,6 +20,11 @@ export const Text: ComponentStory<typeof FormInputText> = (args) => {
     };
 
     return <OctoForm schema={schema} onSubmit={() => {}} defaultValues={defaultValues}>
+        <pre>{`
+        const schema = yup.object({
+            flavor: yup.string().required(),
+        });
+        `}</pre>
         <FormInputText {...args} />
     </OctoForm>;
 };

@@ -13,6 +13,7 @@ import {
 } from "../OctoForm";
 import { OptionLabel } from "../components/FormInputProps";
 import { FormInputText } from "../components/FormInputText";
+/*
 import { FormInputDropdown } from "../components/FormInputDropdown";
 import { FormInputDateTime } from "../components/FormInputDateTime";
 import { FormInputDate } from "../components/FormInputDate";
@@ -20,6 +21,7 @@ import { FormInputMultiCheckbox } from "../components/FormInputMultiCheckbox";
 import { FormInputSlider } from "../components/FormInputSlider";
 import { FormInputCheckbox } from "../components/FormInputCheckbox";
 import { ErrorList } from "../extra/ErrorList";
+*/
 import { SubmitButton } from "../extra/SubmitButton";
 
 export default {
@@ -101,7 +103,6 @@ SimpleLogin.args = {
         password: "password1",
     },
     formEnabled: true,
-    size: "medium",
 };
 
 export const FullExample: ComponentStory<typeof OctoForm> = () => {
@@ -201,6 +202,7 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
                     name="exampleRequired"
                     label="Example required"
                 />
+                {/*
                 <FormInputDropdown
                     name="iceCreamType"
                     label="Ice Cream Type"
@@ -221,6 +223,7 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
                 <FormInputCheckbox name="isVegan" label="Vegan" />
 
                 <ErrorList />
+                */}
 
                 <div>
                     <SubmitButton label="Save" />

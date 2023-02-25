@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { SchemaDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
 import { ExtraParams } from "yup/lib/types";
 
-export type Size = "small" | "medium" | undefined;
+export type Size = "small" | "normal" | "large" | undefined;
 
 export function findTest(fieldName: string, schema: yup.AnyObjectSchema, testName: string): (ExtraParams | undefined) {
     const desc = schema.describe();
@@ -55,4 +55,15 @@ function getNumberParam(extra: (ExtraParams | undefined), paramName: string): nu
 
 export function isRequired(schema: yup.AnyObjectSchema, name: string): boolean {
     return findTest(name, schema, "required") != null;
+}
+
+export function sizeToClassName(size: Size): string {
+    switch (size) {
+        case "small":
+            return "form-control-sm";
+        case "large":
+            return "form-control-lg";
+        default:
+            return "";
+    }
 }

@@ -5,8 +5,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import esLocale from "date-fns/locale/es";
 import * as yup from "yup";
 
-import { Stack } from "@mui/material";
-
 import {
     FormRenderContext,
     OctoForm,
@@ -87,13 +85,13 @@ export const SimpleLogin: ComponentStory<typeof OctoForm> = (args) => {
             onChange={onFormChange}
         >
             <h1>Login</h1>
-            <Stack spacing={2}>
+            <div className="container text-center">
                 <FormInputText name="username" label="User name" />
                 <FormInputText name="password" label="Password" />
-                <Stack direction="row">
+                <div>
                     <SubmitButton label="Log In" />
-                </Stack>
-            </Stack>
+                </div>
+            </div>
         </OctoForm>
     );
 };
@@ -197,7 +195,7 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
             locale={esLocale}
             onChange={onFormChange}
         >
-            <Stack spacing={2}>
+            <div className="container text-center">
                 <FormInputText name="example" label="Example" />
                 <FormInputText
                     name="exampleRequired"
@@ -224,10 +222,10 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
 
                 <ErrorList />
 
-                <Stack direction="row">
+                <div>
                     <SubmitButton label="Save" />
-                </Stack>
-            </Stack>
+                </div>
+            </div>
         </OctoForm>
     );
 };

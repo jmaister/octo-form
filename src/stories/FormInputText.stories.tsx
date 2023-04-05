@@ -1,7 +1,7 @@
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import * as yup from "yup";
+import * as yup from 'yup';
 
 import { FormInputText } from "../components/FormInputText";
 import { OctoForm } from "../OctoForm";
@@ -12,10 +12,15 @@ export default {
 } as ComponentMeta<typeof FormInputText>;
 
 export const Text: ComponentStory<typeof FormInputText> = (args) => {
+
+    type FormValuesType = {
+        flavor: string;
+    };
+
     const schema = yup.object({
         flavor: yup.string().required(),
     });
-    const defaultValues = {
+    const defaultValues:FormValuesType = {
         flavor: "",
     };
 

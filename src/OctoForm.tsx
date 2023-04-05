@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset } from "react-hook-form";
+import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset, DeepPartial } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import * as yup from 'yup';
 
 import { findLocaleOrDefault } from "./locales";
 import { Locale } from "date-fns";
@@ -16,12 +16,16 @@ import "bootstrap/dist/css/bootstrap.css";
 // For getting build configuration well done
 // https://github.com/viclafouch/mui-tel-input/tree/505101b585476ae0a011acefbafe0776b07985c3
 
+// From react-hook-form
+// https://github.com/react-hook-form/react-hook-form/pull/762#issuecomment-571710411
+// https://codesandbox.io/s/angry-haibt-mdfym?file=/src/forms/Form.tsx:497-509
+
 export interface FormRenderContext<T extends FieldValues> {
-    control: Control;
+    control: Control<T>;
     register: UseFormRegister<T>;
     setValue: UseFormSetValue<T>;
     getValues: UseFormGetValues<T>;
-    schema: yup.AnyObjectSchema;
+    schema: yup.ObjectSchema<any>;
     watch: UseFormWatch<T>;
     formEnabled: boolean;
     formState: FormState<T>;
@@ -37,12 +41,13 @@ export type OnChangeFnType<T extends FieldValues> = (
     data: T,
     context: FormRenderContext<T>,
     field:string|undefined,
-    type:string|undefined) => void;
+    type:string|undefined
+) => void;
 
 
 export interface OctoFormProps<T extends FieldValues> {
     defaultValues: T;
-    schema: yup.AnyObjectSchema;
+    schema: yup.ObjectSchema<any>;
     onSubmit: OnSubmitFnType<T>;
     onChange?: OnChangeFnType<T>;
     children?: React.ReactNode;
@@ -56,6 +61,11 @@ export const OctoFormContext = createContext({} as FormRenderContext<any>);
 export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, onChange, children, formEnabled, locale, size }: OctoFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
+    const localFormContext = React.useMemo(
+        () => ({ defaultValues: defaultValues }),
+        [defaultValues]
+    );
+
     const {
         control,
         register,
@@ -66,9 +76,10 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         getValues,
         trigger,
         reset,
-    } = useForm<InferredType>({
+    } = useForm<T>({
         resolver: yupResolver(schema),
-        defaultValues: defaultValues,
+        // TODO: fix DeepPartial<T>
+        defaultValues: defaultValues as DeepPartial<T>,
         mode: "onChange",
     });
 
@@ -82,7 +93,7 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         setSubmitAllowed(isFormEnabled && !formState.isSubmitting && formState.isDirty && formState.isValid);
     } , [isFormEnabled, formState.isSubmitting, formState.isDirty, formState.isValid]);
 
-    const renderProps: FormRenderContext<InferredType> = {
+    const renderProps: FormRenderContext<T> = {
         control,
         register,
         setValue,
@@ -99,14 +110,16 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
     }
 
     useEffect(() => {
-        const { unsubscribe } = watch((data: T, { name, type }) => {
-            onChange?.(data, renderProps, name?.toString(), type?.toString());
+        const subscription = watch((data, type) => {
+            // TODO: fix onChange
+            // onChange?.(data, renderProps, type.name?.toString(), type.type?.toString());
+            console.log("watch triggered", data, type);
         });
-        return () => unsubscribe();
-    }, [watch]);
+        return () => subscription.unsubscribe();
+    }, []);
 
     // Wrap the onSubmit function to send the context
-    const onSubmitHandler: SubmitHandler<InferredType> = (data) => {
+    const onSubmitHandler: SubmitHandler<T> = (data) => {
         return onSubmit(data, renderProps);
     };
 

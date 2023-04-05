@@ -1,22 +1,24 @@
 import * as yup from "yup";
-import { SchemaDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
-import { ExtraParams } from "yup/lib/types";
+//import { SchemaDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
+//import { ExtraParams } from "yup";
 
 export type Size = "small" | "normal" | "large" | undefined;
 
-export function findTest(fieldName: string, schema: yup.AnyObjectSchema, testName: string): (ExtraParams | undefined) {
-    const desc = schema.describe();
+export function findTest(fieldName: string, schema: yup.ISchema<any>, testName: string): (any | undefined) {
+    const desc:any = schema.describe();
+
+    const t = typeof desc;
 
     // Assume that the field name of an object with only one level. i.e. "items.2.description"
     if (fieldName.indexOf(".") > 0) {
         const parts = fieldName.split(".");
-        const arrayField = desc.fields[parts[0]] as SchemaInnerTypeDescription;
+        const arrayField = desc.fields[parts[0]] as yup.SchemaInnerTypeDescription;
         if (arrayField == null) {
             console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
             return;
         }
-        const innerType = arrayField.innerType as SchemaObjectDescription;
-        const field = innerType.fields[parts[2]] as SchemaDescription;
+        const innerType = arrayField.innerType as yup.SchemaObjectDescription;
+        const field = innerType.fields[parts[2]] as yup.SchemaDescription;
         if (field == null) {
             console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
             return;
@@ -24,7 +26,7 @@ export function findTest(fieldName: string, schema: yup.AnyObjectSchema, testNam
         return field.tests.find((tt: any) => tt.name === testName);
     }
 
-    const field = desc.fields[fieldName] as SchemaDescription;
+    const field = desc.fields[fieldName] as yup.SchemaDescription;
     if (field == null) {
         console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
         return;
@@ -40,7 +42,7 @@ export function findParamNumber(fieldName: string, schema: yup.AnyObjectSchema, 
     throw new Error(`Field "${fieldName}": Add parameter "${testName}(...)" to the yup schema`);
 }
 
-function getNumberParam(extra: (ExtraParams | undefined), paramName: string): number {
+function getNumberParam(extra: (any | undefined), paramName: string): number {
     if (!extra) {
         throw new Error("yup.min() is required");
     }
@@ -53,7 +55,7 @@ function getNumberParam(extra: (ExtraParams | undefined), paramName: string): nu
     return 0;
 }
 
-export function isRequired(schema: yup.AnyObjectSchema, name: string): boolean {
+export function isRequired(schema: yup.ISchema<any>, name: string): boolean {
     return findTest(name, schema, "required") != null;
 }
 

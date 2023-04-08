@@ -70,6 +70,17 @@ export function sizeToClassName(size: Size): string {
     }
 }
 
+export function sizeToClassNameDropdown(size: Size): string {
+    switch (size) {
+        case "small":
+            return "form-select-sm";
+        case "large":
+            return "form-select-lg mb-3";
+        default:
+            return "";
+    }
+}
+
 export function randomId() {
     return "id__" + Math.random().toString(36);
 }

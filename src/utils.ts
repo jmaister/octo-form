@@ -69,3 +69,7 @@ export function sizeToClassName(size: Size): string {
             return "";
     }
 }
+
+export function randomId() {
+    return "id__" + Math.random().toString(36);
+}

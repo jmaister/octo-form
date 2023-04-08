@@ -14,8 +14,7 @@
     "react",
     "react-form",
     "react-hook-form",
-    "material",
-    "material-ui",
+    "bootstrap",
     "yup"
   ],
   "type": "commonjs",

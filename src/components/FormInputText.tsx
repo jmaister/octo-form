@@ -12,27 +12,46 @@ export const FormInputText = ({ name, label, enabled, rows, size }: FormInputPro
     const textRows = rows ?? 1;
     size = size ?? ctx.size;
 
-    // TODO: fix "rows" prop
-
-    return (
-        <div className="mb-3">
-            <label>{label} {isRequired(schema, name) ? "*" : null}</label>
-            <input
-                type="text"
-                {...ctx.register(name)}
-                className={`
-                    form-control
-                    ${ctx.formState.errors[name] ? "is-invalid" : ""}
-                    ${sizeToClassName(size)}
-                `}
-                disabled={!enabled}
-            />
-            <FieldError error={ctx.formState.errors[name]?.message?.toString()} />
-            <div className="invalid-feedback">
-                {ctx.formState.errors[name]?.message?.toString()}
+    if (textRows > 1) {
+        return (
+            <div className="mb-3">
+                <label>{label} {isRequired(schema, name) ? "*" : null}</label>
+                <textarea
+                    {...ctx.register(name)}
+                    className={`
+                        form-control
+                        ${ctx.formState.errors[name] ? "is-invalid" : ""}
+                        ${sizeToClassName(size)}
+                    `}
+                    rows={textRows}
+                    disabled={!enabled}
+                />
+                <FieldError error={ctx.formState.errors[name]?.message?.toString()} />
+                <div className="invalid-feedback">
+                    {ctx.formState.errors[name]?.message?.toString()}
+                </div>
             </div>
-        </div>
-
-    );
+        )
+    } else {
+        return (
+            <div className="mb-3">
+                <label>{label} {isRequired(schema, name) ? "*" : null}</label>
+                <input
+                    type="text"
+                    {...ctx.register(name)}
+                    className={`
+                        form-control
+                        ${ctx.formState.errors[name] ? "is-invalid" : ""}
+                        ${sizeToClassName(size)}
+                    `}
+                    disabled={!enabled}
+                />
+                <FieldError error={ctx.formState.errors[name]?.message?.toString()} />
+                <div className="invalid-feedback">
+                    {ctx.formState.errors[name]?.message?.toString()}
+                </div>
+            </div>
+        );
+    }
 };
 

@@ -1,5 +1,5 @@
 
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import * as yup from "yup";
 
@@ -9,9 +9,9 @@ import { OctoForm } from "../OctoForm";
 export default {
     title: "FormInputSlider",
     component: FormInputSlider,
-} as ComponentMeta<typeof FormInputSlider>;
+} as Meta<typeof FormInputSlider>;
 
-export const Integer: ComponentStory<typeof FormInputSlider> = (args) => {
+export const Integer: StoryFn<typeof FormInputSlider> = (args) => {
     const schema = yup.object({
         volume: yup.number().integer().min(0).max(10),
     });
@@ -25,10 +25,10 @@ export const Integer: ComponentStory<typeof FormInputSlider> = (args) => {
 };
 Integer.args = {
     name: "volume",
-    label: "Volume"
+    label: "Volume",
 };
 
-export const Float: ComponentStory<typeof FormInputSlider> = (args) => {
+export const Float: StoryFn<typeof FormInputSlider> = (args) => {
     const schema = yup.object({
         temperature: yup.number().min(0).max(100),
     });

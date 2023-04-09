@@ -1,4 +1,3 @@
-import { FormLabel } from "@mui/material";
 import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 
@@ -12,7 +11,7 @@ export const ErrorList = () => {
             const i = errors[key];
             const msg = i?.message || '';
             return <li key={key}>
-                <FormLabel color="error">{JSON.stringify(msg)}</FormLabel>
+                <label color="error">{JSON.stringify(msg)}</label>
             </li>
         })}
     </ul>

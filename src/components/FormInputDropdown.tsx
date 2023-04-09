@@ -10,15 +10,22 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
 
   enabled = enabled ?? formEnabled ?? true;
 
+  const required = isRequired(schema, name);
+
   // TODO: fix size
 
-  return (
+  return (<>
+    <label>{label} {required ? "*" : null}</label>
     <select className={"form-select " + sizeToClassNameDropdown(size)} disabled={!enabled}>
-        <option value="" disabled selected hidden>{label} {isRequired(schema, name) ? "*" : null}</option>
+        {required
+            ? <option value="" disabled selected hidden></option>
+            : <option value=""></option>
+        }
         {options.map((option) => (
             <option value={option.value}>{option.label}</option>
         ))}
     </select>
+    </>
   )
 
 };

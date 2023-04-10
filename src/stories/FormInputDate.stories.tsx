@@ -1,17 +1,18 @@
 
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import * as yup from "yup";
 import { FormInputDate } from "../components/FormInputDate";
 
 import { OctoForm } from "../OctoForm";
+import es from "date-fns/locale/es";
 
 export default {
     title: "FormInputDate",
     component: FormInputDate,
-} as ComponentMeta<typeof FormInputDate>;
+} as Meta<typeof FormInputDate>;
 
-export const Date: ComponentStory<typeof FormInputDate> = (args) => {
+export const Date: StoryFn<typeof FormInputDate> = (args) => {
     const schema = yup.object({
         appointmentDate: yup.date().required(),
     });
@@ -19,7 +20,7 @@ export const Date: ComponentStory<typeof FormInputDate> = (args) => {
         appointmentDate: null,
     };
 
-    return <OctoForm schema={schema} onSubmit={() => {}} defaultValues={defaultValues}>
+    return <OctoForm schema={schema} onSubmit={() => {}} defaultValues={defaultValues} locale={es}>
         <FormInputDate {...args} />
     </OctoForm>;
 };

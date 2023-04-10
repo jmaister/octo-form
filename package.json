@@ -42,17 +42,18 @@
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "yup": "^0.32.11"
+    "yup": "^1.0.2"
   },
   "dependencies": {
-    "@date-io/date-fns": "2.16.0",
+    "@date-io/date-fns": "^2.16.0",
     "@hookform/resolvers": "3.0.1",
-    "bootstrap": "5.2.3",
+    "bootstrap": "^5.2.3",
     "date-fns": "2.29.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.11.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "7.43.9",
-    "yup": "1.0.2"
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -63,15 +64,16 @@
     "@storybook/react": "^7.0.2",
     "@storybook/react-vite": "7.0.2",
     "@storybook/testing-library": "^0.1.0",
-    "@types/react": "18.0.33",
+    "@types/react": "18.0.34",
+    "@types/react-datepicker": "^4.10.0",
     "@types/react-dom": "18.0.11",
     "@vitejs/plugin-react": "3.1.0",
     "babel-loader": "^9.1.2",
     "chromatic": "^6.17.3",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "sass": "1.60.0",
+    "sass": "1.61.0",
     "storybook": "7.0.2",
-    "typescript": "5.0.3",
+    "typescript": "5.0.4",
     "vite": "4.2.1",
     "vite-plugin-dts": "2.2.0"
   },

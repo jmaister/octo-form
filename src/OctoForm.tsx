@@ -61,11 +61,6 @@ export const OctoFormContext = createContext({} as FormRenderContext<any>);
 export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmit, onChange, children, formEnabled, locale, size }: OctoFormProps<T>) {
     type InferredType = yup.InferType<typeof schema>;
 
-    const localFormContext = React.useMemo(
-        () => ({ defaultValues: defaultValues }),
-        [defaultValues]
-    );
-
     const {
         control,
         register,

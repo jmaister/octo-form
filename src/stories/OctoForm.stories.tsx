@@ -215,6 +215,7 @@ export const FullExample: StoryFn<typeof OctoForm> = () => {
 
                 */}
                 <ErrorList />
+                <hr/>
 
                 <div>
                     <SubmitButton label="Save" />

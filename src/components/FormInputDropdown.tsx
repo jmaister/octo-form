@@ -6,7 +6,7 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 
 
 export const FormInputDropdown= ({name, label, enabled, options}: FormInputPropsWithOptions) => {
-  const {control, schema, formEnabled, size } = useContext(OctoFormContext);
+  const {control, schema, formEnabled, size, ...ctx } = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
 
@@ -16,13 +16,16 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
 
   return (<>
     <label>{label} {required ? "*" : null}</label>
-    <select className={"form-select " + sizeToClassNameDropdown(size)} disabled={!enabled}>
+    <select className={"form-select " + sizeToClassNameDropdown(size)}
+        disabled={!enabled}
+        {...ctx.register(name)}
+        >
         {required
-            ? <option value="" disabled selected hidden></option>
+            ? <option value="" disabled hidden></option>
             : <option value=""></option>
         }
         {options.map((option) => (
-            <option value={option.value}>{option.label}</option>
+            <option key={option.value} value={option.value}>{option.label}</option>
         ))}
     </select>
     </>

@@ -12,6 +12,8 @@ export const FormInputText = ({ name, label, enabled, rows, size }: FormInputPro
     const textRows = rows ?? 1;
     size = size ?? ctx.size;
 
+    // TODO: fix: shows errors twice
+
     if (textRows > 1) {
         return (
             <div className="mb-3">

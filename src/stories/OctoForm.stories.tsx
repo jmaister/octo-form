@@ -18,6 +18,8 @@ import { FormInputDropdown } from "../components/FormInputDropdown";
 import { FormInputSlider } from "../components/FormInputSlider";
 import { FormInputCheckbox } from "../components/FormInputCheckbox";
 import { ErrorList } from "../extra/ErrorList";
+import { FormInputDate } from "../components/FormInputDate";
+import { FormInputDateTime } from "../components/FormInputDateTime";
 
 export default {
     /* 👇 The title prop is optional.
@@ -143,9 +145,9 @@ export const FullExample: StoryFn<typeof OctoForm> = () => {
                     .map((option) => option.value.toString())
             ),
         age: yup.number().positive().integer().moreThan(0).required(),
-        /*
         todaysDate: yup.date().required(),
         todaysDateAndTime: yup.date().required(),
+        /*
         days: yup
             .array()
             .of(
@@ -201,12 +203,12 @@ export const FullExample: StoryFn<typeof OctoForm> = () => {
                 <FormInputSlider name="volume" label="Volume" />
                 <FormInputCheckbox name="isVegan" label="Vegan" />
 
-                {/*
                 <FormInputDate name="todaysDate" label="Today's date" />
                 <FormInputDateTime
                     name="todaysDateAndTime"
                     label="Today's date and time"
                 />
+                {/*
                 <FormInputMultiCheckbox
                     name="days"
                     label="Days"

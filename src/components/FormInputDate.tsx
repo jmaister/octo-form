@@ -9,19 +9,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const FormInputDate = ({ name, label, enabled }: FormInputProps) => {
-    const { control, schema, formEnabled, locale, size, ...ctx } =
-        useContext(OctoFormContext);
+    const { control, schema, formEnabled, locale, size, ...ctx } = useContext(OctoFormContext);
 
     enabled = enabled ?? formEnabled ?? true;
     const required = isRequired(schema, name);
 
-    const dateFormat = "dd/MM/yyyy";
-    console.log("dateformat", locale);
-
     return (
         <Controller
             control={control}
-            name="date-input"
+            name={name}
             render={({ field }) => (<>
               <label>{label} {required ? "*" : null}</label>
               <DatePicker

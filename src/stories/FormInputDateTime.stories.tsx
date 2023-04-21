@@ -12,7 +12,8 @@ export default {
     component: FormInputDateTime,
 } as Meta<typeof FormInputDateTime>;
 
-export const Date: StoryFn<typeof FormInputDateTime> = (args) => {
+
+export const DateTime: StoryFn<typeof FormInputDateTime> = (args) => {
     const schema = yup.object({
         appointmentDate: yup.date().required(),
     });
@@ -24,7 +25,7 @@ export const Date: StoryFn<typeof FormInputDateTime> = (args) => {
         <FormInputDateTime {...args} />
     </OctoForm>;
 };
-Date.args = {
+DateTime.args = {
     name: "appointmentDateTime",
     label: "Appointment Date and time",
 };

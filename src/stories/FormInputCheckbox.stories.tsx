@@ -1,5 +1,5 @@
 
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import * as yup from "yup";
 import { FormInputCheckbox } from "../components/FormInputCheckbox";
@@ -9,9 +9,9 @@ import { OctoForm } from "../OctoForm";
 export default {
     title: "FormInputCheckbox",
     component: FormInputCheckbox,
-} as ComponentMeta<typeof FormInputCheckbox>;
+} as Meta<typeof FormInputCheckbox>;
 
-export const Checkbox: ComponentStory<typeof FormInputCheckbox> = (args) => {
+export const Checkbox: StoryFn<typeof FormInputCheckbox> = (args) => {
     const schema = yup.object({
         acceptPolicy: yup.string().required(),
     });

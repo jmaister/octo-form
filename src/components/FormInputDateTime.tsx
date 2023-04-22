@@ -1,39 +1,40 @@
 import { useContext } from "react";
 
 import { Controller } from "react-hook-form";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import TextField from "@mui/material/TextField";
 import { FormInputProps } from "./FormInputProps";
 import { isRequired } from "../utils";
 import { OctoFormContext } from "../OctoForm";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const FormInputDateTime = ({ name, label, enabled }: FormInputProps) => {
+    const { control, schema, formEnabled, locale, size, ...ctx } = useContext(OctoFormContext);
 
-  const { control, schema, formEnabled, locale, size } = useContext(OctoFormContext);
+    // TODO: allow to set the minutes steps
 
-  enabled = enabled ?? formEnabled ?? true;
+    enabled = enabled ?? formEnabled ?? true;
+    const required = isRequired(schema, name);
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) =>
-          <DateTimePicker
-            label={label}
-            disabled={!enabled}
-            renderInput={(params) =>
-              <TextField
-                {...params}
-                required={isRequired(schema, name)}
-                size={size}
-              />}
-            {...field}
-          />
-        }
-      />
-    </LocalizationProvider>
-  );
+    return (
+        <Controller
+            control={control}
+            name={name}
+            render={({ field }) => (<>
+              <label>{label} {required ? "*" : null}</label>
+              <DatePicker
+                    placeholderText="Select date and time"
+                    onChange={(date) => field.onChange(date)}
+                    selected={field.value}
+                    customInput={<input className="form-control" />}
+                    locale={locale}
+                    disabled={!enabled}
+                    showTimeSelect
+                    dateFormat="Pp"
+                    timeFormat="p"
+                    timeIntervals={1}
+                />
+            </>)}
+        />
+    );
 };

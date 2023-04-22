@@ -1,10 +1,8 @@
 
-import { Controller } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { OctoFormContext } from "../OctoForm";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import { randomId } from "../utils";
 
 export const FormInputCheckbox = ({ name, label, enabled, size }: FormInputProps) => {
     const { control, schema, formEnabled, ...ctx } = useContext(OctoFormContext);
@@ -12,20 +10,27 @@ export const FormInputCheckbox = ({ name, label, enabled, size }: FormInputProps
     enabled = enabled ?? formEnabled ?? true;
     size = size ?? ctx.size;
 
+    const id = useMemo(() => randomId(), []);
+
+    // TODO: fix size
+
     return (
-        <Controller
-            name={name}
-            control={control}
-            render={({
-                field: { onChange, value },
-                fieldState: { error },
-            }) => (
-                <FormControlLabel
-                    control={<Checkbox checked={value} onChange={onChange} size={size} />}
-                    disabled={!enabled}
-                    label={label} />
-            )}
-        />
+        <div className="form-check">
+            <input
+                className={`
+                    form-check-input
+                    ${ctx.formState.errors[name] ? "is-invalid" : ""}
+                `}
+                type="checkbox"
+                {...ctx.register(name)}
+                id={id}
+                disabled={!enabled}
+                />
+            <label className="form-check-label" htmlFor={id}>
+                {label}
+            </label>
+        </div>
     );
+
 };
 

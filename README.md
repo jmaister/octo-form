@@ -5,7 +5,7 @@
 
 Write less code to create your forms.
 
-OctoForm is a wrapper that combines Material-UI + react-hook-form + yup using ReactJS.
+OctoForm is a wrapper that combines Bootstrap 5 + react-hook-form + yup using ReactJS.
 
 [Example repository https://github.com/jmaister/octo-form-example]([https://](https://github.com/jmaister/octo-form-example))
 
@@ -79,7 +79,7 @@ const onSubmit: SubmitHandler<SampleFormType> = (data) => {
 
 
 <OctoForm defaultValues={defaultValues} schema={schema} onSubmit={onSubmit}>
-    <Stack spacing={2}>
+    <div className="container">
 
       <FormInputText name="example" label="Example" />
       <FormInputText name="exampleRequired" label="Example required" />
@@ -87,25 +87,17 @@ const onSubmit: SubmitHandler<SampleFormType> = (data) => {
       <FormInputText name="age" label="Age" />
       <FormInputDate name="todaysDate" label="Today's date" />
       <FormInputDateTime name="todaysDateAndTime" label="Today's date and time" />
-      <FormInputMultiCheckbox name="days" label="Days" options={dayOptions} />
       <FormInputSlider name="volume" label="Volume" />
       <FormInputCheckbox name="isVegan" label="Vegan" />
 
-      <Stack direction="row">
-        <Button
-          type="submit"
-          variant="contained"
-        >Submit</Button>
-      </Stack>
-    </Stack>
+      <Button
+        type="submit"
+        variant="contained"
+      >Submit</Button>
+    </div>
 
   </OctoForm>
 ```
-
-# Links
-
-Based on: https://blog.logrocket.com/using-material-ui-with-react-hook-form/
-
 
 
 # TODO

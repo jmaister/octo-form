@@ -1,11 +1,9 @@
 import React from "react";
 
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import esLocale from "date-fns/locale/es";
 import * as yup from "yup";
-
-import { Stack } from "@mui/material";
 
 import {
     FormRenderContext,
@@ -15,14 +13,13 @@ import {
 } from "../OctoForm";
 import { OptionLabel } from "../components/FormInputProps";
 import { FormInputText } from "../components/FormInputText";
+import { SubmitButton } from "../extra/SubmitButton";
 import { FormInputDropdown } from "../components/FormInputDropdown";
-import { FormInputDateTime } from "../components/FormInputDateTime";
-import { FormInputDate } from "../components/FormInputDate";
-import { FormInputMultiCheckbox } from "../components/FormInputMultiCheckbox";
 import { FormInputSlider } from "../components/FormInputSlider";
 import { FormInputCheckbox } from "../components/FormInputCheckbox";
 import { ErrorList } from "../extra/ErrorList";
-import { SubmitButton } from "../extra/SubmitButton";
+import { FormInputDate } from "../components/FormInputDate";
+import { FormInputDateTime } from "../components/FormInputDateTime";
 
 export default {
     /* 👇 The title prop is optional.
@@ -50,9 +47,9 @@ export default {
             control: false,
         },
     }
-} as ComponentMeta<typeof OctoForm>;
+} as Meta<typeof OctoForm>;
 
-export const SimpleLogin: ComponentStory<typeof OctoForm> = (args) => {
+export const SimpleLogin: StoryFn<typeof OctoForm> = (args) => {
     const schema = yup.object({
         username: yup.string().required(),
         password: yup.string().required(),
@@ -87,13 +84,13 @@ export const SimpleLogin: ComponentStory<typeof OctoForm> = (args) => {
             onChange={onFormChange}
         >
             <h1>Login</h1>
-            <Stack spacing={2}>
+            <div className="container">
                 <FormInputText name="username" label="User name" />
                 <FormInputText name="password" label="Password" />
-                <Stack direction="row">
+                <div>
                     <SubmitButton label="Log In" />
-                </Stack>
-            </Stack>
+                </div>
+            </div>
         </OctoForm>
     );
 };
@@ -103,10 +100,9 @@ SimpleLogin.args = {
         password: "password1",
     },
     formEnabled: true,
-    size: "medium",
 };
 
-export const FullExample: ComponentStory<typeof OctoForm> = () => {
+export const FullExample: StoryFn<typeof OctoForm> = () => {
     const defaultValues = {
         age: 1,
         iceCreamType: "",
@@ -121,7 +117,6 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
     };
 
     const iceCreamOptions: OptionLabel[] = [
-        { value: "", label: "-- no flavor --" },
         { value: "chocolate", label: "Chocolate" },
         { value: "strawberry", label: "Strawberry" },
         { value: "vanilla", label: "Vanilla" },
@@ -152,6 +147,7 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
         age: yup.number().positive().integer().moreThan(0).required(),
         todaysDate: yup.date().required(),
         todaysDateAndTime: yup.date().required(),
+        /*
         days: yup
             .array()
             .of(
@@ -165,14 +161,9 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
                     )
             )
             .required(),
+            */
         volume: yup.number().positive().integer().min(0).max(10).required(),
         isVegan: yup.boolean().required(),
-        reasons: yup.array().of(
-            yup.object({
-                id: yup.string().required(),
-                description: yup.string().required(),
-            })
-        ),
     });
 
     const onSubmit: OnSubmitFnType<any> = async (data, context) => {
@@ -197,7 +188,7 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
             locale={esLocale}
             onChange={onFormChange}
         >
-            <Stack spacing={2}>
+            <div className="container">
                 <FormInputText name="example" label="Example" />
                 <FormInputText
                     name="exampleRequired"
@@ -209,25 +200,29 @@ export const FullExample: ComponentStory<typeof OctoForm> = () => {
                     options={iceCreamOptions}
                 />
                 <FormInputText name="age" label="Age" />
+                <FormInputSlider name="volume" label="Volume" />
+                <FormInputCheckbox name="isVegan" label="Vegan" />
+
                 <FormInputDate name="todaysDate" label="Today's date" />
                 <FormInputDateTime
                     name="todaysDateAndTime"
                     label="Today's date and time"
                 />
+                {/*
                 <FormInputMultiCheckbox
                     name="days"
                     label="Days"
                     options={dayOptions}
                 />
-                <FormInputSlider name="volume" label="Volume" />
-                <FormInputCheckbox name="isVegan" label="Vegan" />
 
+                */}
                 <ErrorList />
+                <hr/>
 
-                <Stack direction="row">
+                <div>
                     <SubmitButton label="Save" />
-                </Stack>
-            </Stack>
+                </div>
+            </div>
         </OctoForm>
     );
 };

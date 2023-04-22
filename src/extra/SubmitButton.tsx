@@ -22,6 +22,6 @@ export const SubmitButton = ({label, icon}: SubmitButtonProps) => {
         type="submit"
         color="primary"
         disabled={isButtonDisabled}>
-        {icon} {label} {JSON.stringify([context.formEnabled, context.formState.isSubmitting, context.formState.isValid, context.formState.isDirty])}
+        {icon} {label}
     </button>
 }

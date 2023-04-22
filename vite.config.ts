@@ -20,8 +20,7 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'OctoForm',
-      fileName: (format) => `index.${format}.js`,
-      formats: ['umd'],
+      fileName: 'octo-form',
     },
     rollupOptions: {
     },

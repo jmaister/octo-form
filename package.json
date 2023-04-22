@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "1.0.24",
+  "version": "2.0.0",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -15,14 +15,20 @@
     "react-form",
     "react-hook-form",
     "bootstrap",
-    "yup"
+    "yup",
+    "low-code"
   ],
-  "type": "commonjs",
-  "files": [
-    "dist"
-  ],
+  "type": "module",
+  "files": ["dist"],
   "types": "./dist/index.d.ts",
-  "main": "./dist/index.umd.js",
+  "main": "./dist/octo-form.umd.cjs",
+  "module": "./dist/octo-form.js",
+  "exports": {
+    ".": {
+      "import": "./dist/octo-form.js",
+      "require": "./dist/octo-form.umd.cjs"
+    }
+  },
   "directories": {
     "dist": "dist"
   },
@@ -78,7 +84,5 @@
     "vite": "4.3.1",
     "vite-plugin-dts": "2.3.0"
   },
-  "readme": "ERROR: No README data found!",
-  "homepage": "https://github.com/jmaister/octo-form#readme",
-  "_id": "octo-form@1.0.24"
+  "homepage": "https://github.com/jmaister/octo-form#readme"
 }

@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -19,7 +19,9 @@
     "low-code"
   ],
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/index.d.ts",
   "main": "./dist/octo-form.umd.cjs",
   "module": "./dist/octo-form.js",
@@ -68,6 +70,7 @@
     "@storybook/addon-interactions": "^7.0.6",
     "@storybook/addon-links": "^7.0.6",
     "@storybook/addon-mdx-gfm": "7.0.6",
+    "@storybook/addon-styling": "^1.0.1",
     "@storybook/react": "^7.0.6",
     "@storybook/react-vite": "7.0.6",
     "@storybook/testing-library": "^0.1.0",

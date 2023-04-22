@@ -8,8 +8,6 @@ import { findLocaleOrDefault } from "./locales";
 import { Locale } from "date-fns";
 import { Size } from "./utils";
 
-import "bootstrap/dist/css/bootstrap.css";
-
 // https://react-hook-form.com/get-started/#IntegratingControlledInputs
 
 

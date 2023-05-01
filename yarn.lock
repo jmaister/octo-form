@@ -2736,10 +2736,10 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.4.tgz"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-datepicker@^4.11.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.11.0.tgz#94729462a72cfb20427bc3b91ca9048ed7bb4429"
-  integrity sha512-naH5k8Uu5NG9+1esiCIIl9HU2hq6W6ck/3xA5XpX3kc6WUBP+ndklciQ5avGbjiYE3BvdqlHtAeHd5jcZatdTw==
+"@types/react-datepicker@^4.11.2":
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.11.2.tgz#44abfc6379faa58d28eb5730a058d6a389d40eac"
+  integrity sha512-ELYyX3lb3K1WltqdlF1hbnaDGgzlF6PIR5T4W38cSEcfrQDIrPE+Ioq5pwRe/KEJ+ihHMjvTVZQkwJx0pWMNHQ==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/react" "*"
@@ -2753,16 +2753,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16":
-  version "18.0.33"
-  resolved "https://registry.npmjs.org/@types/react/-/react-18.0.33.tgz"
-  integrity sha512-sHxzVxeanvQyQ1lr8NSHaj0kDzcNiGpILEVt69g9S31/7PfMvNCKLKcsHw4lYKjs3cGNJjXSP4mYzX43QlnjNA==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@18.2.0":
+"@types/react@*", "@types/react@18.2.0", "@types/react@>=16":
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.0.tgz#15cda145354accfc09a18d2f2305f9fc099ada21"
   integrity sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==

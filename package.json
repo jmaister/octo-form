@@ -55,7 +55,7 @@
   "dependencies": {
     "@date-io/date-fns": "^2.16.0",
     "@hookform/resolvers": "3.1.0",
-    "date-fns": "2.29.3",
+    "date-fns": "2.30.0",
     "react-datepicker": "^4.11.0",
     "react-hook-form": "7.43.9",
     "yup": "^1.1.1"

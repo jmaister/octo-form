@@ -105,14 +105,15 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
     useEffect(() => {
         const subscription = watch((data, type) => {
             // TODO: fix onChange
-            // onChange?.(data, renderProps, type.name?.toString(), type.type?.toString());
-            console.log("watch triggered", data, type);
+            onChange?.(data as T, renderProps, type.name?.toString(), type.type?.toString());
+            // console.log("watch triggered", data, type);
         });
         return () => subscription.unsubscribe();
     }, []);
 
     // Wrap the onSubmit function to send the context
     const onSubmitHandler: SubmitHandler<T> = (data) => {
+        // TODO: check if the button has a type=submit, ignore otherwise
         return onSubmit(data, renderProps);
     };
 

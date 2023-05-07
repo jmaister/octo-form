@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { OctoFormContext } from "../OctoForm";
 import { isRequired, sizeToClassNameDropdown } from "../utils";
 import { FormInputPropsWithOptions } from "./FormInputProps";
+import FieldError from "../utils/FieldError";
 
 
 export const FormInputDropdown= ({name, label, enabled, options}: FormInputPropsWithOptions) => {
@@ -28,6 +29,7 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
             <option key={option.value} value={option.value}>{option.label}</option>
         ))}
     </select>
+    <FieldError error={ctx.formState.errors[name]?.message?.toString()} />
     </>
   )
 

@@ -29,9 +29,6 @@ export const FormInputText = ({ name, label, enabled, rows, size }: FormInputPro
                     disabled={!enabled}
                 />
                 <FieldError error={ctx.formState.errors[name]?.message?.toString()} />
-                <div className="invalid-feedback">
-                    {ctx.formState.errors[name]?.message?.toString()}
-                </div>
             </div>
         )
     } else {

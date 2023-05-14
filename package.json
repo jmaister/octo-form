@@ -1,6 +1,6 @@
 {
   "name": "octo-form",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmaister/octo-form/issues"
@@ -39,7 +39,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "ci": "yarn install --frozen-lockfile",
-    "bump": "yarn version --patch --immediate && git push && git push --tags",
+    "bump": "yarn build && yarn version --patch --immediate && git push && git push --tags",
     "test": "echo test",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

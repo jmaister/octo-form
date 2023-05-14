@@ -4,13 +4,16 @@ export interface FormInputProps {
     name: string;
     label: string;
     enabled?: boolean;
-    rows?: number;
     size?: Size;
+}
+
+export interface FormInputTextProps extends FormInputProps {
+    rows?: number;
 }
 
 export interface OptionLabel {
     label: string;
-    value: string | number;
+    value: any;
 }
 
 export interface FormInputPropsWithOptions extends FormInputProps {

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 
-import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset, DeepPartial } from "react-hook-form";
+import { Control, FieldValues, FormState, SubmitHandler, useForm, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormWatch, UseFormTrigger, UseFormReset, DeepPartial, UseFormResetField } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -31,6 +31,7 @@ export interface FormRenderContext<T extends FieldValues> {
     locale: Locale;
     trigger: UseFormTrigger<T>
     reset: UseFormReset<T>;
+    resetField: UseFormResetField<T>;
     size: Size;
 }
 
@@ -69,6 +70,7 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         getValues,
         trigger,
         reset,
+        resetField,
     } = useForm<T>({
         resolver: yupResolver(schema),
         // TODO: fix DeepPartial<T>
@@ -99,6 +101,7 @@ export function OctoForm<T extends FieldValues>({ defaultValues, schema, onSubmi
         locale: findLocaleOrDefault(locale),
         trigger,
         reset,
+        resetField,
         size,
     }
 

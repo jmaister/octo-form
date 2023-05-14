@@ -99,6 +99,13 @@ const onSubmit: SubmitHandler<SampleFormType> = (data) => {
   </OctoForm>
 ```
 
+# Contribute
+
+## Bump version and publish
+
+```bash
+yarn bump
+```
 
 # TODO
 

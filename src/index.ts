@@ -10,6 +10,7 @@ export { FormInputDate } from './components/FormInputDate';
 export { FormInputDateTime } from './components/FormInputDateTime';
 export { FormInputDropdown } from './components/FormInputDropdown';
 export { FormInputMultiCheckbox } from './components/FormInputMultiCheckbox';
+export { FormInputMultiSelect } from './components/FormInputMultiSelect';
 export { FormInputSlider } from './components/FormInputSlider';
 export { FormInputText } from './components/FormInputText';
 
@@ -18,6 +19,7 @@ export { FormInputText } from './components/FormInputText';
 export { ErrorList } from './extra/ErrorList';
 export { SubmitButton } from './extra/SubmitButton';
 export { Watch } from './extra/Watch';
+export { ViewValue } from './extra/ViewValue';
 
 // Other
 export type {FormInputProps, FormInputPropsWithOptions, OptionLabel} from './components/FormInputProps';

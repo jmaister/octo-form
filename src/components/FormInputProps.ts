@@ -19,4 +19,3 @@ export interface OptionLabel {
 export interface FormInputPropsWithOptions extends FormInputProps {
     options: OptionLabel[];
 }
-

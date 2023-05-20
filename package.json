@@ -58,6 +58,7 @@
     "date-fns": "2.30.0",
     "react-datepicker": "^4.11.0",
     "react-hook-form": "7.43.9",
+    "react-multi-select-component": "^4.3.4",
     "yup": "^1.1.1"
   },
   "devDependencies": {

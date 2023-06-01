@@ -15,8 +15,14 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
-      - run: yarn install
+      - run: yarn ci
       - run: yarn build
+      - run: |
+          yarn version --patch --immediate
+          git push
+          git push --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

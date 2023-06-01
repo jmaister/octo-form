@@ -17,7 +17,12 @@ jobs:
           cache: 'yarn'
       - run: yarn ci
       - run: yarn build
-      - run: |
+      - name: Set git author
+        run: |
+           git config --global user.email "jordiburgos@gmail.com"
+           git config --global user.name "Jordi Burgos"
+      - name: Bump package.json version
+        run: |
           yarn version --patch --immediate
           git push
           git push --tags

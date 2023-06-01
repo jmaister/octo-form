@@ -9,8 +9,6 @@ OctoForm is a wrapper that combines Bootstrap 5 + react-hook-form + yup using Re
 
 [Example repository https://github.com/jmaister/octo-form-example]([https://](https://github.com/jmaister/octo-form-example))
 
-Demo on Chromatic: https://63e902d86b5464295dc7a3c4-mufiukyqon.chromatic.com/?path=/story/octoform--full-example
-
 # Screenshot
 
 ![Screenshot](docs/screenshot.png)

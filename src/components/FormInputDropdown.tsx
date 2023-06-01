@@ -15,10 +15,13 @@ export const FormInputDropdown= ({name, label, enabled, options}: FormInputProps
 
   // TODO: fix size
 
+  const pointer = {cursor: "pointer"};
+
   return (<>
     <label>{label} {required ? "*" : null}</label>
     <select className={"form-select " + sizeToClassNameDropdown(size)}
         disabled={!enabled}
+        style={pointer}
         {...ctx.register(name)}
         >
         {required

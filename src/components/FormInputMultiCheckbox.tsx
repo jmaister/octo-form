@@ -15,6 +15,8 @@ export const FormInputMultiCheckbox = ({ name, label, enabled, options }: FormIn
     enabled = enabled ?? formEnabled ?? true;
     const required = isRequired(schema, name);
 
+    const pointer = {cursor: "pointer"};
+
     return <Controller
         control={control}
         name={name}
@@ -32,9 +34,10 @@ export const FormInputMultiCheckbox = ({ name, label, enabled, options }: FormIn
                     {options.map((option) => {
                         return (
                             // TODO: fix size
-                            <div key={option.value} className="form-check">
+                            <div key={option.value} className="form-check" style={pointer}>
                                 <input
                                     className="form-check-input"
+                                    style={pointer}
                                     type="checkbox"
                                     id={option.value}
                                     value={option.value}
@@ -49,7 +52,7 @@ export const FormInputMultiCheckbox = ({ name, label, enabled, options }: FormIn
                                         }
                                         onChange([...Array.from(set.values())]);
                                     }}  />
-                                <label className="form-check-label" htmlFor={option.value}>
+                                <label className="form-check-label" htmlFor={option.value} style={pointer}>
                                     {option.label}
                                 </label>
                             </div>

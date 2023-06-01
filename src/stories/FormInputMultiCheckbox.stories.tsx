@@ -12,7 +12,7 @@ export default {
     component: FormInputMultiCheckbox,
 } as Meta<typeof FormInputMultiCheckbox>;
 
-export const Dropdown: StoryFn<typeof FormInputMultiCheckbox> = (args) => {
+export const MultiCheckbox: StoryFn<typeof FormInputMultiCheckbox> = (args) => {
     const [v, setV] = useState<any>();
 
     type FormValuesType = {
@@ -36,7 +36,7 @@ export const Dropdown: StoryFn<typeof FormInputMultiCheckbox> = (args) => {
         <div>Value: {JSON.stringify(v)}</div>
     </OctoForm>;
 };
-Dropdown.args = {
+MultiCheckbox.args = {
     name: "flavor",
     label: "Preferred flavor",
     options: [

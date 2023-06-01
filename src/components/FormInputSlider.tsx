@@ -20,12 +20,14 @@ export const FormInputSlider = ({ name, label, enabled, size }: FormInputProps) 
     const id = useMemo(() => randomId(), []);
 
     // TODO: size
+    const pointer = {cursor: "pointer"};
 
     return (<>
             <label htmlFor={id} className="form-label">{label}{isRequired(schema, name) ? " * " : null} {watch(name)}</label>
             <input
                 type="range"
                 className="form-range"
+                style={pointer}
                 id={id}
                 disabled={!enabled}
                 min={min}

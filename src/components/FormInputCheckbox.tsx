@@ -14,8 +14,10 @@ export const FormInputCheckbox = ({ name, label, enabled, size }: FormInputProps
 
     // TODO: fix size
 
+    const pointer = {cursor: "pointer"};
+
     return (
-        <div className="form-check">
+        <div className="form-check" style={pointer}>
             <input
                 className={`
                     form-check-input
@@ -25,8 +27,9 @@ export const FormInputCheckbox = ({ name, label, enabled, size }: FormInputProps
                 {...ctx.register(name)}
                 id={id}
                 disabled={!enabled}
+                style={pointer}
                 />
-            <label className="form-check-label" htmlFor={id}>
+            <label className="form-check-label" htmlFor={id} style={pointer}>
                 {label}
             </label>
         </div>

@@ -6,14 +6,13 @@ import { FormInputPropsWithOptions } from "./FormInputProps";
 import FieldError from "../utils/FieldError";
 
 
-export const FormInputDropdown= ({name, label, enabled, options}: FormInputPropsWithOptions) => {
-  const {control, schema, formEnabled, size, ...ctx } = useContext(OctoFormContext);
+export const FormInputDropdown= ({name, label, enabled, size, options}: FormInputPropsWithOptions) => {
+  const {control, schema, formEnabled, ...ctx } = useContext(OctoFormContext);
 
   enabled = enabled ?? formEnabled ?? true;
+  size = size ?? ctx.size;
 
   const required = isRequired(schema, name);
-
-  // TODO: fix size
 
   const pointer = {cursor: "pointer"};
 

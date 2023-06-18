@@ -7,8 +7,6 @@ export type Size = "small" | "normal" | "large" | undefined;
 export function findTest(fieldName: string, schema: yup.ISchema<any>, testName: string): (any | undefined) {
     const desc:any = schema.describe();
 
-    const t = typeof desc;
-
     // Assume that the field name of an object with only one level. i.e. "items.2.description"
     if (fieldName.indexOf(".") > 0) {
         const parts = fieldName.split(".");

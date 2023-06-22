@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { OctoForm, OnSubmitFnType } from "../OctoForm";
 import * as yup from "yup";
@@ -6,18 +6,91 @@ import { FieldValues } from "react-hook-form";
 import { FormInputText } from "./FormInputText";
 import { SubmitButton } from "../extra/SubmitButton";
 
-export type AutoOctoFormProps<T extends FieldValues> = {
-    jsonSchema: any;
-    defaultValues: T;
-    onSubmit: OnSubmitFnType<T>;
+type ActionUrl = {
+    url: string;
+    method: "GET" | "POST" | "PUT";
 };
 
-export default function AutoOctoForm<T extends FieldValues>({ jsonSchema, defaultValues, onSubmit }: AutoOctoFormProps<T>) {
+const isActionUrl = (obj: any) : obj is ActionUrl => {
+    return obj.url && obj.method;
+}
+
+type LoadFunction = () => Promise<any>;
+type SaveFunction<T> = (data:T) => Promise<any>;
+
+export type AutoOctoFormProps<T extends FieldValues> = {
+    jsonSchema: any;
+    defaultValues?: T;
+    onSubmit?: OnSubmitFnType<T>;
+    // TODO: better naming for load and save
+    load?: ActionUrl | LoadFunction;
+    save?: ActionUrl | SaveFunction<T>;
+};
+
+export default function AutoOctoForm<T extends FieldValues>({ jsonSchema, defaultValues, onSubmit, load, save }: AutoOctoFormProps<T>) {
+    const [values, setValues] = useState<T>({} as T);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const yupSchema = useMemo(() => fromJsonSchema(jsonSchema), [jsonSchema]);
     const view = useMemo(() => formFromJsonSchema(jsonSchema), [jsonSchema]);
 
-    return <OctoForm schema={yupSchema} defaultValues={defaultValues} onSubmit={onSubmit}>
+    useEffect(() => {
+        if (load) {
+            // TODO: parse the response with the schema to remove extra fields
+            if (isActionUrl(load)) {
+                fetch(load.url, {
+                    method: load.method,
+                }).then(response => response.json()).then(data => {
+                    setValues(data);
+                    setLoading(false);
+                });
+            } else {
+                load().then(data => {
+                    setValues(data);
+                    setLoading(false);
+                });
+            }
+        } else {
+            setValues(defaultValues || {} as T);
+            setLoading(false);
+        }
+    }, [load]);
+
+    let submitFunction : OnSubmitFnType<T> = () => {};
+    if (onSubmit) {
+        if (save) {
+            throw new Error("Cannot have both onSubmit and save");
+        }
+        submitFunction = onSubmit;
+    } else {
+        if (isActionUrl(save)) {
+            submitFunction = async (data:T) => {
+                console.log("submitting", data);
+                const response = await fetch(save.url, {
+                    method: save.method,
+                    body: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                const responseData = await response.json();
+                return responseData;
+            }
+        } else if (save) {
+            submitFunction = save;
+        } else {
+            throw new Error("Must have either 'onSubmit' or 'save' parameters.");
+        }
+    }
+
+    if (loading) {
+        return <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+
+    }
+
+    return <OctoForm schema={yupSchema} defaultValues={values} onSubmit={submitFunction}>
         {view}
         <div style={{textAlign: "right"}}>
             <SubmitButton />

@@ -3657,17 +3657,12 @@ csstype@^3.0.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
-date-fns@2.30.0:
+date-fns@2.30.0, date-fns@^2.0.1, date-fns@^2.24.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
   dependencies:
     "@babel/runtime" "^7.21.0"
-
-date-fns@^2.0.1, date-fns@^2.24.0:
-  version "2.29.3"
-  resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.29.3.tgz"
-  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
 debug@2.6.9, debug@^2.6.9:
   version "2.6.9"
@@ -6499,10 +6494,10 @@ react-colorful@^5.1.2:
   resolved "https://registry.npmjs.org/react-colorful/-/react-colorful-5.6.1.tgz"
   integrity sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==
 
-react-datepicker@^4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.13.0.tgz#1f03dc043a94745b437dacf584264ad1e4cba3ec"
-  integrity sha512-1S8yAqzcHE+LjCjMrTXJfUkTVijTPogxUYrmQmSpmRJ23fdC2w8cg04jzaEAyesTzyUa06JzayZJKk85QHbvcw==
+react-datepicker@^4.14.1:
+  version "4.14.1"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.14.1.tgz#f9f7925d0a40e3195048bbd22a5faa635765163d"
+  integrity sha512-uiPfjD+25KI5WOfCAXlzQgSLyksTagk3wwKn1KGBdF19YtybFDregRmcoNNGveQHAbT10SJZdCvk/8pbc7zxJg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     classnames "^2.2.6"

@@ -23,18 +23,20 @@ export const FormInputDateTime = ({ name, label, size, enabled }: FormInputProps
             name={name}
             render={({ field }) => (<>
               <label>{label} {required ? "*" : null}</label>
-              <DatePicker
-                    placeholderText="Select date and time"
-                    onChange={(date) => field.onChange(date)}
-                    selected={field.value}
-                    customInput={<input className={"form-control " + sizeToClassName(size)} />}
-                    locale={locale}
-                    disabled={!enabled}
-                    showTimeSelect
-                    dateFormat="Pp"
-                    timeFormat="p"
-                    timeIntervals={1}
-                />
+              <div className="mb-3">
+                <DatePicker
+                        placeholderText="Select date and time"
+                        onChange={(date) => field.onChange(date)}
+                        selected={field.value}
+                        customInput={<input className={"form-control " + sizeToClassName(size)} />}
+                        locale={locale}
+                        disabled={!enabled}
+                        showTimeSelect
+                        dateFormat="Pp"
+                        timeFormat="p"
+                        timeIntervals={1}
+                    />
+                </div>
             </>)}
         />
     );

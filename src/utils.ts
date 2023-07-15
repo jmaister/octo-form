@@ -1,10 +1,37 @@
 import * as yup from "yup";
-//import { SchemaDescription, SchemaInnerTypeDescription, SchemaObjectDescription } from "yup/lib/schema";
-//import { ExtraParams } from "yup";
 
 export type Size = "small" | "normal" | "large" | undefined;
 
+export function findField(fieldName: string, schema: yup.ISchema<any>) : (undefined|yup.SchemaDescription) {
+    const desc:any = schema.describe();
+
+    // Assume that the field name of an object with only one level. i.e. "items.2.description"
+    if (fieldName.indexOf(".") > 0) {
+        const parts = fieldName.split(".");
+        const arrayField = desc.fields[parts[0]] as yup.SchemaInnerTypeDescription;
+        if (arrayField == null) {
+            console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+            return;
+        }
+        const innerType = arrayField.innerType as yup.SchemaObjectDescription;
+        const field = innerType.fields[parts[2]] as yup.SchemaDescription;
+        if (field == null) {
+            console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+            return;
+        }
+        return field;
+    }
+
+    const field = desc.fields[fieldName] as yup.SchemaDescription;
+    if (field == null) {
+        console.warn(`${fieldName} is not defined in the Yup schema. Consider defining it.`);
+        return;
+    }
+    return field;
+}
+
 export function findTest(fieldName: string, schema: yup.ISchema<any>, testName: string): (any | undefined) {
+    // TODO: rewrite using findField(...)
     const desc:any = schema.describe();
 
     // Assume that the field name of an object with only one level. i.e. "items.2.description"
@@ -42,7 +69,7 @@ export function findParamNumber(fieldName: string, schema: yup.AnyObjectSchema, 
 
 function getNumberParam(extra: (any | undefined), paramName: string): number {
     if (!extra) {
-        throw new Error("yup.min() is required");
+        throw new Error("yup."  + paramName + "() is required");
     }
     if (extra.params != null) {
         const p = extra.params as any;
@@ -54,7 +81,11 @@ function getNumberParam(extra: (any | undefined), paramName: string): number {
 }
 
 export function isRequired(schema: yup.ISchema<any>, name: string): boolean {
-    return findTest(name, schema, "required") != null;
+    const field = findField(name, schema);
+    if (field) {
+        return !field.optional;
+    }
+    return false;
 }
 
 export function sizeToClassName(size: Size): string {

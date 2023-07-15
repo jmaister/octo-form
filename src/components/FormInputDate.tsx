@@ -21,15 +21,17 @@ export const FormInputDate = ({ name, label, enabled, size }: FormInputProps) =>
             name={name}
             render={({ field }) => (<>
               <label>{label} {required ? "*" : null}</label>
-              <DatePicker
-                    placeholderText="Select date"
-                    onChange={(date) => field.onChange(date)}
-                    selected={field.value}
-                    customInput={<input className={"form-control " + sizeToClassName(size)} />}
-                    locale={locale}
-                    dateFormat="P"
-                    disabled={!enabled}
-                />
+              <div className="mb-3">
+                <DatePicker
+                        placeholderText="Select date"
+                        onChange={(date) => field.onChange(date)}
+                        selected={field.value}
+                        customInput={<input className={"form-control " + sizeToClassName(size)} />}
+                        locale={locale}
+                        dateFormat="P"
+                        disabled={!enabled}
+                    />
+                </div>
             </>)}
         />
     );

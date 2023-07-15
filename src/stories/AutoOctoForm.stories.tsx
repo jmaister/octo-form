@@ -84,3 +84,58 @@ export const FromJsonSchemaWithAutoLoadSave: StoryFn<typeof AutoOctoForm> = (arg
             />
     );
 };
+
+export const FromJsonSchemaComplex: StoryFn<typeof AutoOctoForm> = (args) => {
+    const jsonSchema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://example.com/product.schema.json",
+        "title": "Product",
+        "description": "A product from Acme's catalog",
+        "type": "object",
+        "properties": {
+          "productId": {
+            "title": "Product ID",
+            "description": "The unique identifier for a product",
+            "type": "integer"
+          },
+          "productName": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "productType": {
+            "title": "Product Type",
+            "type": "string",
+            "enum": ["T A", "T B", "T C"]
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "availableOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+
+        },
+        "required": [ "productId" ],
+        "additionalProperties": false,
+    } as const;
+
+    type ValuesType = FromSchema<typeof jsonSchema>;
+
+    const defaultValues:ValuesType = {
+        productId: 55,
+        productType: undefined
+    };
+
+    const onSubmit: OnSubmitFnType<ValuesType> = async (data, context) => {
+        console.log("data submitted", data);
+    };
+
+    return (
+        <AutoOctoForm jsonSchema={jsonSchema} defaultValues={defaultValues} onSubmit={onSubmit} />
+    );
+};

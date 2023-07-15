@@ -18,7 +18,7 @@ export const FormInputDropdown= ({name, label, enabled, size, options}: FormInpu
 
   return (<>
     <label>{label} {required ? "*" : null}</label>
-    <select className={"form-select " + sizeToClassNameDropdown(size)}
+    <select className={"form-select " + sizeToClassNameDropdown(size) + " mb-3"}
         disabled={!enabled}
         style={pointer}
         {...ctx.register(name)}
